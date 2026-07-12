@@ -1,0 +1,40 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { FiMenu, FiX } from "react-icons/fi";
+import { navItems } from "@/constants/nav";
+
+export default function MobileMenu() {
+	const [isOpen, setIsOpen] = useState(false);
+
+	return (
+		<div className="md:hidden">
+			<button
+				type="button"
+				onClick={() => setIsOpen((open) => !open)}
+				aria-label={isOpen ? "Close menu" : "Open menu"}
+				aria-expanded={isOpen}
+				className="flex items-center justify-center w-10 h-10 text-white hover:text-teal-300 transition-colors"
+			>
+				{isOpen ? <FiX size={26} aria-hidden="true" /> : <FiMenu size={26} aria-hidden="true" />}
+			</button>
+
+			{isOpen && (
+				<ul className="absolute left-0 right-0 top-20 flex flex-col items-center gap-2 py-4 bg-slate-900/95 backdrop-blur border-b border-white/10">
+					{navItems.map((item) => (
+						<li key={item.href} className="w-full text-center">
+							<Link
+								href={item.href}
+								onClick={() => setIsOpen(false)}
+								className="block py-2 text-lg hover:text-teal-300 transition-colors"
+							>
+								{item.label}
+							</Link>
+						</li>
+					))}
+				</ul>
+			)}
+		</div>
+	);
+}

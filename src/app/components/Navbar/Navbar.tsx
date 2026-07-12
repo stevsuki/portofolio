@@ -1,5 +1,6 @@
 import Link from "next/link";
 import NavbarScrollEffect from "./NavbarScrollEffect";
+import MobileMenu from "./MobileMenu";
 import { siteConfig } from "@/constants/site";
 import { navItems } from "@/constants/nav";
 
@@ -17,6 +18,8 @@ export default function Navbar() {
 							</li>
 						))}
 					</ul>
+
+					<MobileMenu />
 				</nav>
 			</header>
 		</NavbarScrollEffect>

@@ -10,9 +10,12 @@ export default function TechStackSection() {
 			</h2>
 			<div className="flex justify-center gap-8 flex-wrap max-w-3xl">
 				{techStacks.map((tech) => (
-					<div key={tech.name} className="flex flex-col items-center gap-2 w-20">
-						<tech.icon size={48} color={tech.color} />
-						<p className="text-sm text-center">{tech.name}</p>
+					<div
+						key={tech.name}
+						className="flex flex-col items-center gap-2 w-20 hover:-translate-y-1 transition-transform duration-300"
+					>
+						<tech.icon size={48} color={tech.color} aria-hidden="true" />
+						<p className="text-sm text-center text-gray-300">{tech.name}</p>
 					</div>
 				))}
 			</div>

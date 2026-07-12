@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer";
 import { siteConfig } from "@/constants/site";
 import "./globals.css";
 
@@ -10,7 +11,10 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-	title: siteConfig.title,
+	title: {
+		default: siteConfig.title,
+		template: `%s - ${siteConfig.name}`,
+	},
 	description: siteConfig.description,
 };
 
@@ -24,6 +28,7 @@ export default function RootLayout({
 			<body className={`${outfit.className} antialiased`}>
 				<Navbar />
 				{children}
+				<Footer />
 			</body>
 		</html>
 	);

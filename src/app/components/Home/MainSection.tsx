@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Button from "../Button";
+import LinkButton from "../LinkButton";
 import SocialIcon from "../SocialIcon";
 import { siteConfig } from "@/constants/site";
 import { heroContent } from "@/constants/home";
@@ -12,7 +12,7 @@ export default function MainSection() {
 					src="/assets/person.webp"
 					alt="main-image"
 					fill
-					sizes="(max-width: 768px) 100vw, 400px"
+					sizes="(max-width: 768px) calc(100vw - 5rem), 400px"
 					className="object-contain"
 					priority
 				/>
@@ -30,7 +30,7 @@ export default function MainSection() {
 				<br />
 				<SocialIcon />
 				<br />
-				<Button />
+				<LinkButton href="/contact">{heroContent.ctaLabel}</LinkButton>
 			</div>
 		</section>
 	);

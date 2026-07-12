@@ -1,4 +1,4 @@
-import Link from "next/link";
+import LinkButton from "../LinkButton";
 import { contactCtaContent } from "@/constants/home";
 
 export default function ContactCtaSection() {
@@ -9,12 +9,7 @@ export default function ContactCtaSection() {
 				<span className="text-teal-300">{contactCtaContent.headingHighlight}</span>
 			</h2>
 			<p className="text-lg max-w-xl">{contactCtaContent.description}</p>
-			<Link
-				href="/contact"
-				className="w-35 p-2 border-2 rounded-4xl hover:cursor-pointer hover:bg-teal-300/30 text-center"
-			>
-				{contactCtaContent.ctaLabel}
-			</Link>
+			<LinkButton href="/contact">{contactCtaContent.ctaLabel}</LinkButton>
 		</section>
 	);
 }

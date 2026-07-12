@@ -1,6 +1,7 @@
 export const heroContent = {
 	greeting: "Hi! I am",
 	bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur reprehenderit nobis enim doloribus maiores amet quia neque fuga hic sit dolorem necessitatibus ullam eveniet perspiciatis, debitis praesentium in eum est.",
+	ctaLabel: "Contact Me",
 };
 
 export const aboutTeaserContent = {

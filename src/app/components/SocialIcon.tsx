@@ -12,7 +12,11 @@ export default function SocialIcon() {
 					className="w-9 h-9 border-2 rounded-full border-gray-600 hover:border-teal-300 transition-colors duration-300 cursor-pointer flex justify-center items-center"
 					aria-label={social.label}
 				>
-					<social.icon size={20} className="text-gray-600 hover:text-teal-300 transition-colors duration-300" />
+					<social.icon
+						size={20}
+						aria-hidden="true"
+						className="text-gray-600 hover:text-teal-300 transition-colors duration-300"
+					/>
 				</a>
 			))}
 		</div>

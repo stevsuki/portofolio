@@ -1,5 +1,5 @@
 import { projects } from "@/data/projects";
-import Link from "next/link";
+import LinkButton from "../LinkButton";
 import { featuredProjectsContent } from "@/constants/home";
 
 export default function FeaturedProjectsSection() {
@@ -15,19 +15,14 @@ export default function FeaturedProjectsSection() {
 				{featuredProjects.map((project) => (
 					<div
 						key={project.slug}
-						className="w-64 h-40 border-3 border-white rounded-2xl flex flex-col justify-center items-center gap-2 flex-shrink-0"
+						className="w-64 h-40 border-2 border-white/20 rounded-2xl flex flex-col justify-center items-center gap-2 flex-shrink-0 hover:border-teal-300 hover:-translate-y-1 transition-all duration-300"
 					>
 						<p className="text-lg">{project.title}</p>
 						<p className="text-sm text-teal-300">{project.tech}</p>
 					</div>
 				))}
 			</div>
-			<Link
-				href="/project"
-				className="w-45 p-2 border-2 rounded-4xl hover:cursor-pointer hover:bg-teal-300/30 text-center"
-			>
-				{featuredProjectsContent.ctaLabel}
-			</Link>
+			<LinkButton href="/project">{featuredProjectsContent.ctaLabel}</LinkButton>
 		</section>
 	);
 }
