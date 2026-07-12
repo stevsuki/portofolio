@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function Contact() {
 	return (
-		<main className="pt-28 p-10 md:p-16 md:pt-32 flex flex-col items-center gap-10 min-h-[70vh] justify-center">
+		<main className="pt-28 p-10 md:p-16 md:pt-32 flex flex-col items-center gap-10 min-h-[70vh] justify-center animate-fade-up">
 			<div className="flex flex-col items-center gap-4 text-center max-w-xl">
 				<h1 className="text-4xl">
 					{contactPageContent.headingPrefix}{" "}

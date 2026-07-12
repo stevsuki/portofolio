@@ -7,7 +7,7 @@ import { heroContent } from "@/constants/home";
 export default function MainSection() {
 	return (
 		<section className="justify-center items-center p-10 md:p-16 md:flex md:justify-evenly">
-			<div className="relative flex w-full h-[300px] justify-center items-center md:w-[400px] md:h-[600px] mb-10">
+			<div className="relative flex w-full h-[300px] justify-center items-center md:w-[400px] md:h-[600px] mb-10 animate-fade-up">
 				<Image
 					src="/assets/person.webp"
 					alt="main-image"
@@ -15,9 +15,10 @@ export default function MainSection() {
 					sizes="(max-width: 768px) calc(100vw - 5rem), 400px"
 					className="object-contain"
 					priority
+					fetchPriority="high"
 				/>
 			</div>
-			<div className="flex flex-col md:w-[50%] items-center text-center md:text-start md:items-start">
+			<div className="flex flex-col md:w-[50%] items-center text-center md:text-start md:items-start animate-fade-up-delayed">
 				<h1 className="text-5xl">
 					{heroContent.greeting} <span className="text-teal-300">{siteConfig.name}</span>
 				</h1>

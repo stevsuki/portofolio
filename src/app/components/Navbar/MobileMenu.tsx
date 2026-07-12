@@ -21,7 +21,7 @@ export default function MobileMenu() {
 			</button>
 
 			{isOpen && (
-				<ul className="absolute left-0 right-0 top-20 flex flex-col items-center gap-2 py-4 bg-slate-900/95 backdrop-blur border-b border-white/10">
+				<ul className="absolute left-0 right-0 top-20 flex flex-col items-center gap-2 py-4 bg-slate-900/95 backdrop-blur border-b border-white/10 animate-menu-in">
 					{navItems.map((item) => (
 						<li key={item.href} className="w-full text-center">
 							<Link
