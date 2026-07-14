@@ -7,9 +7,9 @@ import { heroContent } from "@/constants/home";
 export default function MainSection() {
 	return (
 		<section className="relative justify-center items-center p-10 md:p-16 md:flex md:justify-evenly overflow-hidden">
+			<div className="absolute inset-0 bg-grid" aria-hidden="true" />
 			<div className="glow glow-teal w-[420px] h-[420px] -top-32 -left-32" />
 			<div className="glow glow-blue w-[360px] h-[360px] top-20 -right-24" />
-			<div className="absolute inset-0 bg-grid -z-0" aria-hidden="true" />
 
 			<div className="relative z-10 flex w-full h-[300px] justify-center items-center md:w-[400px] md:h-[600px] mb-10 animate-fade-up">
 				<Image
@@ -44,7 +44,7 @@ export default function MainSection() {
 				<br />
 				<div className="flex flex-wrap gap-4">
 					<LinkButton href="/contact">{heroContent.ctaLabel}</LinkButton>
-					<LinkButton href="/project" className="border-white/30 hover:border-teal-300">
+					<LinkButton href="/project" className="border-white/30">
 						{heroContent.secondaryCtaLabel}
 					</LinkButton>
 				</div>

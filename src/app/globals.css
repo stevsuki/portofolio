@@ -100,7 +100,8 @@ button:focus-visible {
 
   .animate-fade-up,
   .animate-fade-up-delayed,
-  .animate-menu-in {
+  .animate-menu-in,
+  .animate-ping {
     animation: none;
   }
 
