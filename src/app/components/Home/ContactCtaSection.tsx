@@ -1,15 +1,20 @@
 import LinkButton from "../LinkButton";
+import SectionHeading from "../SectionHeading";
 import { contactCtaContent } from "@/constants/home";
 
 export default function ContactCtaSection() {
 	return (
-		<section className="flex flex-col items-center text-center gap-6 p-10 md:p-16">
-			<h2 className="text-3xl">
-				{contactCtaContent.headingPrefix}{" "}
-				<span className="text-teal-300">{contactCtaContent.headingHighlight}</span>
-			</h2>
-			<p className="text-lg max-w-xl">{contactCtaContent.description}</p>
-			<LinkButton href="/contact">{contactCtaContent.ctaLabel}</LinkButton>
+		<section className="relative flex flex-col items-center text-center gap-6 p-10 md:p-16 overflow-hidden">
+			<div className="glow glow-teal w-[300px] h-[300px] top-0 left-1/2 -translate-x-1/2" />
+			<div className="relative z-10 flex flex-col items-center gap-6">
+				<SectionHeading
+					eyebrow={contactCtaContent.eyebrow}
+					prefix={contactCtaContent.headingPrefix}
+					highlight={contactCtaContent.headingHighlight}
+				/>
+				<p className="text-lg max-w-xl">{contactCtaContent.description}</p>
+				<LinkButton href="/contact">{contactCtaContent.ctaLabel}</LinkButton>
+			</div>
 		</section>
 	);
 }

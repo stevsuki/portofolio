@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FiMenu, FiX } from "react-icons/fi";
 import { navItems } from "@/constants/nav";
 
 export default function MobileMenu() {
 	const [isOpen, setIsOpen] = useState(false);
+	const pathname = usePathname();
 
 	return (
 		<div className="md:hidden">
@@ -22,17 +24,23 @@ export default function MobileMenu() {
 
 			{isOpen && (
 				<ul className="absolute left-0 right-0 top-20 flex flex-col items-center gap-2 py-4 bg-slate-900/95 backdrop-blur border-b border-white/10 animate-menu-in">
-					{navItems.map((item) => (
-						<li key={item.href} className="w-full text-center">
-							<Link
-								href={item.href}
-								onClick={() => setIsOpen(false)}
-								className="block py-2 text-lg hover:text-teal-300 transition-colors"
-							>
-								{item.label}
-							</Link>
-						</li>
-					))}
+					{navItems.map((item) => {
+						const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+						return (
+							<li key={item.href} className="w-full text-center">
+								<Link
+									href={item.href}
+									onClick={() => setIsOpen(false)}
+									aria-current={isActive ? "page" : undefined}
+									className={`block py-2 text-lg transition-colors ${
+										isActive ? "text-teal-300" : "hover:text-teal-300"
+									}`}
+								>
+									{item.label}
+								</Link>
+							</li>
+						);
+					})}
 				</ul>
 			)}
 		</div>

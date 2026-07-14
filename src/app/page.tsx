@@ -1,3 +1,4 @@
+import AboutTeaserSection from "./components/Home/AboutTeaserSection";
 import ContactCtaSection from "./components/Home/ContactCtaSection";
 import ExperienceSection from "./components/Home/ExperienceSection";
 import FeaturedProjectsSection from "./components/Home/FeaturedProjectsSection";
@@ -11,7 +12,9 @@ export default function Home() {
 		<main>
 			<MainSection />
 			<SummaryBoxSection />
-			{/* <AboutTeaserSection /> */}
+			<Reveal>
+				<AboutTeaserSection />
+			</Reveal>
 			<Reveal>
 				<ExperienceSection />
 			</Reveal>

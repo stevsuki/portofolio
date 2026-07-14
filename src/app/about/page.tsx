@@ -3,6 +3,7 @@ import Image from "next/image";
 import LinkButton from "../components/LinkButton";
 import ExperienceTimeline from "../components/ExperienceTimeline";
 import Reveal from "../components/Reveal";
+import SectionHeading from "../components/SectionHeading";
 import { aboutPageContent } from "@/constants/pages";
 import { experienceContent } from "@/constants/home";
 
@@ -26,6 +27,9 @@ export default function About() {
 					/>
 				</div>
 				<div className="flex flex-col gap-6 items-center md:items-start text-center md:text-start animate-fade-up-delayed">
+					<span className="text-xs tracking-[0.2em] uppercase text-teal-300/80 font-medium">
+						{aboutPageContent.eyebrow}
+					</span>
 					<h1 className="text-4xl">
 						{aboutPageContent.headingPrefix}{" "}
 						<span className="text-teal-300">{aboutPageContent.headingHighlight}</span>
@@ -41,10 +45,11 @@ export default function About() {
 
 			<Reveal className="w-full">
 				<section className="flex flex-col items-center gap-10 w-full">
-					<h2 className="text-3xl">
-						{experienceContent.headingPrefix}{" "}
-						<span className="text-teal-300">{experienceContent.headingHighlight}</span>
-					</h2>
+					<SectionHeading
+						eyebrow={experienceContent.eyebrow}
+						prefix={experienceContent.headingPrefix}
+						highlight={experienceContent.headingHighlight}
+					/>
 					<ExperienceTimeline />
 				</section>
 			</Reveal>

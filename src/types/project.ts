@@ -4,4 +4,6 @@ export type Project = {
 	tech: string;
 	description: string;
 	featured?: boolean;
+	repoUrl?: string;
+	demoUrl?: string;
 };

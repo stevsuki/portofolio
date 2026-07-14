@@ -1,5 +1,8 @@
 import { projects } from "@/data/projects";
 import LinkButton from "../LinkButton";
+import SectionHeading from "../SectionHeading";
+import ProjectCard from "../ProjectCard";
+import Reveal from "../Reveal";
 import { featuredProjectsContent } from "@/constants/home";
 
 export default function FeaturedProjectsSection() {
@@ -7,19 +10,16 @@ export default function FeaturedProjectsSection() {
 
 	return (
 		<section className="flex flex-col items-center gap-10 p-10 md:p-16">
-			<h2 className="text-3xl">
-				{featuredProjectsContent.headingPrefix}{" "}
-				<span className="text-teal-300">{featuredProjectsContent.headingHighlight}</span>
-			</h2>
-			<div className="flex justify-center gap-10 flex-wrap">
-				{featuredProjects.map((project) => (
-					<div
-						key={project.slug}
-						className="w-64 h-40 border-2 border-white/20 rounded-2xl flex flex-col justify-center items-center gap-2 flex-shrink-0 hover:border-teal-300 hover:-translate-y-1 transition-all duration-300"
-					>
-						<p className="text-lg">{project.title}</p>
-						<p className="text-sm text-teal-300">{project.tech}</p>
-					</div>
+			<SectionHeading
+				eyebrow={featuredProjectsContent.eyebrow}
+				prefix={featuredProjectsContent.headingPrefix}
+				highlight={featuredProjectsContent.headingHighlight}
+			/>
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl w-full">
+				{featuredProjects.map((project, index) => (
+					<Reveal key={project.slug} delayMs={index * 80} className="h-full">
+						<ProjectCard project={project} />
+					</Reveal>
 				))}
 			</div>
 			<LinkButton href="/project">{featuredProjectsContent.ctaLabel}</LinkButton>

@@ -19,6 +19,31 @@ button:focus-visible {
   border-radius: 4px;
 }
 
+/* Ambient glow accents: pure CSS radial gradients, no JS, negligible paint cost */
+.glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow-teal {
+  background: radial-gradient(closest-side, rgba(45, 212, 191, 0.25), transparent);
+}
+
+.glow-blue {
+  background: radial-gradient(closest-side, rgba(56, 189, 248, 0.18), transparent);
+}
+
+.bg-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+}
+
 @keyframes fade-up {
   from {
     opacity: 0;

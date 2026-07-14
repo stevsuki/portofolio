@@ -1,12 +1,29 @@
+import Link from "next/link";
 import SocialIcon from "./SocialIcon";
 import { siteConfig } from "@/constants/site";
+import { navItems } from "@/constants/nav";
 
 export default function Footer() {
 	return (
-		<footer className="flex flex-col items-center gap-4 py-10 mt-10 border-t border-white/10">
-			<h2 className="text-teal-300 text-xl">{siteConfig.shortName}</h2>
-			<SocialIcon />
-			<p className="text-sm text-gray-400">
+		<footer className="border-t border-white/10 mt-10">
+			<div className="max-w-5xl mx-auto flex flex-col items-center gap-6 py-10 px-10 md:flex-row md:justify-between">
+				<Link href="/" className="text-teal-300 text-xl">
+					{siteConfig.shortName}
+				</Link>
+
+				<ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-gray-400">
+					{navItems.map((item) => (
+						<li key={item.href}>
+							<Link href={item.href} className="hover:text-teal-300 transition-colors">
+								{item.label}
+							</Link>
+						</li>
+					))}
+				</ul>
+
+				<SocialIcon />
+			</div>
+			<p className="text-sm text-gray-500 text-center pb-8">
 				&copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
 			</p>
 		</footer>
