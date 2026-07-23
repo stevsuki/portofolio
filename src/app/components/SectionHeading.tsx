@@ -9,10 +9,12 @@ export default function SectionHeading({ eyebrow, prefix, highlight, className =
 	return (
 		<div className={`flex flex-col items-center gap-3 text-center ${className}`}>
 			{eyebrow && (
-				<span className="text-xs tracking-[0.2em] uppercase text-teal-300/80 font-medium">{eyebrow}</span>
+				<span className="text-xs tracking-[0.2em] uppercase text-teal-600/80 dark:text-teal-300/80 font-medium">
+					{eyebrow}
+				</span>
 			)}
 			<h2 className="text-3xl">
-				{prefix} <span className="text-teal-300">{highlight}</span>
+				{prefix} <span className="text-teal-600 dark:text-teal-300">{highlight}</span>
 			</h2>
 		</div>
 	);

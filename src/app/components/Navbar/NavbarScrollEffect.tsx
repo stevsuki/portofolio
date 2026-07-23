@@ -20,7 +20,9 @@ export default function NavbarScrollEffect({ children }: NavbarScrollEffectProps
 	return (
 		<div
 			className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-				isScrolled ? "bg-white/10 backdrop-blur shadow-lg" : "bg-transparent"
+				isScrolled
+					? "bg-slate-900/5 dark:bg-white/10 backdrop-blur shadow-lg"
+					: "bg-transparent"
 			}`}
 		>
 			{children}

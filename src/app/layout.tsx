@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer";
+import ThemeProvider from "./components/ThemeProvider";
 import { siteConfig } from "@/constants/site";
 import "./globals.css";
 
@@ -24,11 +25,13 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" data-scroll-behavior="smooth">
+		<html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
 			<body className={`${outfit.className} antialiased`}>
-				<Navbar />
-				{children}
-				<Footer />
+				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+					<Navbar />
+					{children}
+					<Footer />
+				</ThemeProvider>
 			</body>
 		</html>
 	);

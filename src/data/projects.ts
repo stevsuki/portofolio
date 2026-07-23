@@ -22,4 +22,11 @@ export const projects: Project[] = [
 		description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur reprehenderit nobis.",
 		featured: true,
 	},
+	{
+		slug: "project-four",
+		title: "Project Four",
+		tech: "React",
+		description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur reprehenderit nobis.",
+		featured: true,
+	},
 ];

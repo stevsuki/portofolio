@@ -27,15 +27,15 @@ export default function About() {
 					/>
 				</div>
 				<div className="flex flex-col gap-6 items-center md:items-start text-center md:text-start animate-fade-up-delayed">
-					<span className="text-xs tracking-[0.2em] uppercase text-teal-300/80 font-medium">
+					<span className="text-xs tracking-[0.2em] uppercase text-teal-600/80 dark:text-teal-300/80 font-medium">
 						{aboutPageContent.eyebrow}
 					</span>
 					<h1 className="text-4xl">
 						{aboutPageContent.headingPrefix}{" "}
-						<span className="text-teal-300">{aboutPageContent.headingHighlight}</span>
+						<span className="text-teal-600 dark:text-teal-300">{aboutPageContent.headingHighlight}</span>
 					</h1>
 					{aboutPageContent.paragraphs.map((paragraph) => (
-						<p key={paragraph} className="text-lg text-justify text-gray-300">
+						<p key={paragraph} className="text-lg text-justify text-slate-600 dark:text-gray-300">
 							{paragraph}
 						</p>
 					))}

@@ -15,7 +15,9 @@ export default function NavLinks() {
 					<li
 						key={item.href}
 						className={`border-b-2 transition h-7 ${
-							isActive ? "border-teal-300 text-teal-300" : "border-transparent hover:border-teal-300"
+							isActive
+								? "border-teal-600 text-teal-600 dark:border-teal-300 dark:text-teal-300"
+								: "border-transparent hover:border-teal-600 dark:hover:border-teal-300"
 						}`}
 					>
 						<Link href={item.href} aria-current={isActive ? "page" : undefined}>

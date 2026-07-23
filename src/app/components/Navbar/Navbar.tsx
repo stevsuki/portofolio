@@ -2,6 +2,7 @@ import Link from "next/link";
 import NavbarScrollEffect from "./NavbarScrollEffect";
 import NavLinks from "./NavLinks";
 import MobileMenu from "./MobileMenu";
+import ThemeToggle from "../ThemeToggle";
 import { siteConfig } from "@/constants/site";
 
 export default function Navbar() {
@@ -9,13 +10,16 @@ export default function Navbar() {
 		<NavbarScrollEffect>
 			<header className="transition-all duration-300">
 				<nav className="w-screen h-20 flex justify-around items-center">
-					<Link href="/" className="text-teal-300 text-2xl">
+					<Link href="/" className="text-teal-600 dark:text-teal-300 text-2xl">
 						{siteConfig.shortName}
 					</Link>
 
 					<NavLinks />
 
-					<MobileMenu />
+					<div className="flex items-center gap-4">
+						<ThemeToggle />
+						<MobileMenu />
+					</div>
 				</nav>
 			</header>
 		</NavbarScrollEffect>

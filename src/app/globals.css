@@ -1,22 +1,40 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 html {
   scroll-behavior: smooth;
 }
 
+:root {
+  --background: #edf0f4;
+  --foreground: #1e293b;
+}
+
+.dark {
+  --background: rgb(15, 23, 42);
+  --foreground: #ffffff;
+}
+
 body {
-  color: white;
-  background-color: rgb(15, 23, 42);
+  color: var(--foreground);
+  background-color: var(--background);
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid rgb(94, 234, 212);
+  outline: 2px solid rgb(13, 148, 136);
   outline-offset: 4px;
   border-radius: 4px;
+}
+
+.dark a:focus-visible,
+.dark button:focus-visible {
+  outline-color: rgb(94, 234, 212);
 }
 
 /* Ambient glow accents: pure CSS radial gradients, no JS, negligible paint cost */
@@ -29,19 +47,32 @@ button:focus-visible {
 }
 
 .glow-teal {
+  background: radial-gradient(closest-side, rgba(45, 212, 191, 0.16), transparent);
+}
+
+.dark .glow-teal {
   background: radial-gradient(closest-side, rgba(45, 212, 191, 0.25), transparent);
 }
 
 .glow-blue {
+  background: radial-gradient(closest-side, rgba(56, 189, 248, 0.12), transparent);
+}
+
+.dark .glow-blue {
   background: radial-gradient(closest-side, rgba(56, 189, 248, 0.18), transparent);
 }
 
 .bg-grid {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(15, 23, 42, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
   background-size: 44px 44px;
   -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+}
+
+.dark .bg-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
 }
 
 @keyframes fade-up {
