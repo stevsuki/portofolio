@@ -14,7 +14,7 @@ export default function ExperienceTimeline() {
 				return (
 					<div key={experience.company} className="relative flex gap-6 pl-6">
 						<span className="absolute left-0 top-2 w-4 h-4 rounded-full bg-teal-600 dark:bg-teal-300 border-2 border-[#edf0f4] dark:border-slate-900 ring-4 ring-teal-600/15 dark:ring-teal-300/15" />
-						<div className="flex flex-col w-full p-5 border-2 border-slate-900/10 dark:border-white/10 rounded-2xl bg-white dark:bg-white/[2%] shadow-sm hover:border-teal-600/50 dark:hover:border-teal-300/50 transition-colors duration-300">
+						<div className="flex flex-col w-full p-5 border-2 border-slate-900/10 dark:border-white/10 rounded-2xl bg-[#f5f6f8] dark:bg-white/[2%] shadow-sm hover:border-teal-600/50 dark:hover:border-teal-300/50 transition-colors duration-300">
 							<div className="flex items-start justify-between gap-3 flex-wrap">
 								<div className="flex items-center gap-2">
 									<FiBriefcase className="text-teal-600 dark:text-teal-300 flex-shrink-0" size={18} aria-hidden="true" />
