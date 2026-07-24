@@ -10,7 +10,7 @@ export default function FeaturedProjectsSection() {
 
 	return (
 		<section className="relative flex flex-col items-center gap-10 p-10 md:p-16">
-			<div className="glow glow-blue w-[340px] h-[340px] top-0 -right-28" />
+			<div className="glow glow-blue w-[300px] h-[300px] top-0 right-0" />
 			<div className="relative z-10 flex flex-col items-center gap-10 w-full">
 				<SectionHeading
 					eyebrow={featuredProjectsContent.eyebrow}

@@ -5,7 +5,7 @@ import { aboutTeaserContent } from "@/constants/home";
 export default function AboutTeaserSection() {
 	return (
 		<section className="relative flex flex-col items-center text-center gap-6 p-10 md:p-16">
-			<div className="glow glow-blue w-[320px] h-[320px] top-0 -left-20" />
+			<div className="glow glow-blue w-[300px] h-[300px] top-0 left-0" />
 			<div className="relative z-10 flex flex-col items-center text-center gap-6">
 				<SectionHeading
 					eyebrow={aboutTeaserContent.eyebrow}
