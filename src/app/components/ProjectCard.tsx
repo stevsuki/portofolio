@@ -5,12 +5,52 @@ type ProjectCardProps = Readonly<{
 	project: Project;
 }>;
 
+const COVER_VARIANTS = [
+	{ bg: "card-cover-0", accent: "text-teal-700 dark:text-teal-200", blob: "bg-teal-900/10 dark:bg-white/10" },
+	{ bg: "card-cover-1", accent: "text-sky-700 dark:text-sky-200", blob: "bg-sky-900/10 dark:bg-white/10" },
+	{ bg: "card-cover-2", accent: "text-violet-700 dark:text-violet-200", blob: "bg-violet-900/10 dark:bg-white/10" },
+];
+
+// Irregular, hand-picked border-radius pairs so each cover reads as a
+// unique organic shape rather than a repeated stock icon.
+const BLOB_SHAPES = [
+	"rounded-[60%_40%_55%_45%/45%_55%_40%_60%]",
+	"rounded-[35%_65%_45%_55%/55%_40%_65%_35%]",
+	"rounded-[55%_45%_35%_65%/40%_60%_55%_45%]",
+];
+
+function hashOf(slug: string) {
+	return slug.split("").reduce((acc, char) => acc + (char.codePointAt(0) ?? 0), 0);
+}
+
+function coverVariantFor(slug: string) {
+	return COVER_VARIANTS[hashOf(slug) % COVER_VARIANTS.length];
+}
+
 export default function ProjectCard({ project }: ProjectCardProps) {
 	const tags = project.tech.split(",").map((tag) => tag.trim());
+	const initial = project.title.trim().charAt(0).toUpperCase();
+	const hash = hashOf(project.slug);
+	const cover = coverVariantFor(project.slug);
+	const blobShapeA = BLOB_SHAPES[hash % BLOB_SHAPES.length];
+	const blobShapeB = BLOB_SHAPES[(hash + 1) % BLOB_SHAPES.length];
 
 	return (
-		<article className="group relative flex flex-col gap-3 p-6 h-full border-2 border-slate-900/15 dark:border-white/20 rounded-2xl bg-[#f5f6f8] dark:bg-white/[2%] shadow-sm overflow-hidden hover:border-teal-600 dark:hover:border-teal-300 hover:-translate-y-1 transition-all duration-300">
-			<div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-teal-600/0 via-teal-600 to-teal-600/0 dark:from-teal-300/0 dark:via-teal-300 dark:to-teal-300/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+		<article className="group relative flex flex-col space-y-3 p-6 h-full border-2 border-slate-900/15 dark:border-white/20 rounded-2xl bg-[#f5f6f8] dark:bg-white/[2%] shadow-sm overflow-hidden hover:border-teal-600 dark:hover:border-teal-300 hover:-translate-y-1 transition-all duration-300">
+			<div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-teal-600/0 via-teal-600 to-teal-600/0 dark:from-teal-300/0 dark:via-teal-300 dark:to-teal-300/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+
+			<div
+				className={`card-cover ${cover.bg} relative -mx-6 -mt-6 h-28 flex items-center px-6 overflow-hidden`}
+				aria-hidden="true"
+			>
+				<div
+					className={`absolute -right-6 -top-8 w-28 h-28 ${blobShapeA} ${cover.blob} blur-md transition-transform duration-500 group-hover:scale-110`}
+				/>
+				<div
+					className={`absolute right-10 -bottom-8 w-16 h-16 ${blobShapeB} ${cover.blob} blur-sm transition-transform duration-500 group-hover:-translate-y-1`}
+				/>
+				<span className={`relative text-5xl font-bold ${cover.accent} opacity-90 select-none`}>{initial}</span>
+			</div>
 
 			<div className="flex items-start justify-between gap-2">
 				<h2 className="text-xl">{project.title}</h2>

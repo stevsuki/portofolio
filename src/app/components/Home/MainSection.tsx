@@ -12,12 +12,22 @@ export default function MainSection() {
 			<div className="glow glow-blue w-[360px] h-[360px] top-20 -right-24" />
 
 			<div className="relative z-10 flex w-full h-[300px] justify-center items-center md:w-[400px] md:h-[600px] mb-10 animate-fade-up">
+				<svg width="0" height="0" className="absolute" aria-hidden="true">
+					<filter id="avatar-feather" x="-10%" y="-10%" width="120%" height="120%">
+						<feGaussianBlur in="SourceAlpha" stdDeviation="1.6" result="blurredAlpha" />
+						<feComponentTransfer in="blurredAlpha" result="smoothAlpha">
+							<feFuncA type="linear" slope="3.5" intercept="0" />
+						</feComponentTransfer>
+						<feComposite in="SourceGraphic" in2="smoothAlpha" operator="in" />
+					</filter>
+				</svg>
+				<div className="avatar-backdrop" aria-hidden="true" />
 				<Image
 					src="/assets/person.webp"
 					alt="main-image"
 					fill
 					sizes="(max-width: 768px) calc(100vw - 5rem), 400px"
-					className="object-contain"
+					className="object-contain avatar-image"
 					priority
 					fetchPriority="high"
 				/>
