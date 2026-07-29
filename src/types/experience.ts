@@ -2,7 +2,7 @@ export type ExperiencePosition = {
 	role: string;
 	startDate: string;
 	endDate: string;
-	description: string;
+	highlights: string[];
 };
 
 export type Experience = {

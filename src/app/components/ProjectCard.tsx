@@ -1,4 +1,7 @@
-import { FiGithub, FiExternalLink } from "react-icons/fi";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { FiGithub, FiExternalLink, FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { Project } from "@/types/project";
 
 type ProjectCardProps = Readonly<{
@@ -28,12 +31,26 @@ function coverVariantFor(slug: string) {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
+	const [expanded, setExpanded] = useState(false);
+	const [isTruncated, setIsTruncated] = useState(false);
+	const descriptionRef = useRef<HTMLParagraphElement>(null);
 	const tags = project.tech.split(",").map((tag) => tag.trim());
 	const initial = project.title.trim().charAt(0).toUpperCase();
 	const hash = hashOf(project.slug);
 	const cover = coverVariantFor(project.slug);
 	const blobShapeA = BLOB_SHAPES[hash % BLOB_SHAPES.length];
 	const blobShapeB = BLOB_SHAPES[(hash + 1) % BLOB_SHAPES.length];
+
+	useEffect(() => {
+		if (expanded) return;
+		const el = descriptionRef.current;
+		if (!el) return;
+
+		const checkTruncation = () => setIsTruncated(el.scrollHeight > el.clientHeight + 1);
+		checkTruncation();
+		window.addEventListener("resize", checkTruncation);
+		return () => window.removeEventListener("resize", checkTruncation);
+	}, [expanded]);
 
 	return (
 		<article className="group relative flex flex-col space-y-3 p-6 h-full border-2 border-slate-900/15 dark:border-white/20 rounded-2xl bg-[#f5f6f8] dark:bg-white/[2%] shadow-sm overflow-hidden hover:border-teal-600 dark:hover:border-teal-300 hover:-translate-y-1 transition-all duration-300">
@@ -50,10 +67,24 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 					className={`absolute right-10 -bottom-8 w-16 h-16 ${blobShapeB} ${cover.blob} blur-sm transition-transform duration-500 group-hover:-translate-y-1`}
 				/>
 				<span className={`relative text-5xl font-bold ${cover.accent} opacity-90 select-none`}>{initial}</span>
+				{project.status && (
+					<span
+						className={`absolute top-3 right-3 px-2.5 py-0.5 text-xs rounded-full font-medium ${
+							project.status === "Ongoing"
+								? "bg-amber-500/15 text-amber-700 dark:text-amber-300"
+								: "bg-teal-600/15 text-teal-700 dark:text-teal-200"
+						}`}
+					>
+						{project.status}
+					</span>
+				)}
 			</div>
 
 			<div className="flex items-start justify-between gap-2">
-				<h2 className="text-xl">{project.title}</h2>
+				<div className="flex flex-col gap-0.5">
+					<h2 className="text-xl">{project.title}</h2>
+					{project.role && <p className="text-xs text-slate-500 dark:text-gray-400 italic">{project.role}</p>}
+				</div>
 				{(project.repoUrl || project.demoUrl) && (
 					<div className="flex gap-2 flex-shrink-0">
 						{project.repoUrl && (
@@ -93,7 +124,27 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 				))}
 			</div>
 
-			<p className="text-base text-slate-600 dark:text-gray-300">{project.description}</p>
+			<p
+				ref={descriptionRef}
+				className={`text-base text-slate-600 dark:text-gray-300 ${expanded ? "" : "line-clamp-3"}`}
+			>
+				{project.description}
+			</p>
+
+			{isTruncated && (
+				<button
+					type="button"
+					onClick={() => setExpanded((prev) => !prev)}
+					className="flex items-center gap-1 text-sm text-teal-600 dark:text-teal-300 hover:underline self-start"
+				>
+					{expanded ? "Read less" : "Read more"}
+					{expanded ? (
+						<FiChevronUp size={14} aria-hidden="true" />
+					) : (
+						<FiChevronDown size={14} aria-hidden="true" />
+					)}
+				</button>
+			)}
 		</article>
 	);
 }

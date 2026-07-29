@@ -43,7 +43,13 @@ export default function ExperienceTimeline() {
 											<FiCalendar size={12} aria-hidden="true" />
 											{position.startDate} - {position.endDate}
 										</span>
-										<p className="text-sm text-justify mt-0.5 text-slate-500 dark:text-gray-400">{position.description}</p>
+										<ul className="flex flex-col gap-1.5 mt-1.5 list-disc pl-4 marker:text-teal-600/60 dark:marker:text-teal-300/60">
+											{position.highlights.map((highlight) => (
+												<li key={highlight} className="text-sm text-justify text-slate-500 dark:text-gray-400">
+													{highlight}
+												</li>
+											))}
+										</ul>
 									</div>
 								))}
 							</div>
