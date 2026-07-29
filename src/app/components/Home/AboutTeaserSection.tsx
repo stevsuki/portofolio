@@ -13,7 +13,16 @@ export default function AboutTeaserSection() {
 					highlight={aboutTeaserContent.headingHighlight}
 				/>
 				<p className="text-lg text-justify max-w-2xl">{aboutTeaserContent.description}</p>
-				<LinkButton href="/about">{aboutTeaserContent.ctaLabel}</LinkButton>
+				<div className="flex flex-wrap items-center justify-center gap-4">
+					<LinkButton href="/about">{aboutTeaserContent.ctaLabel}</LinkButton>
+					<LinkButton
+						href="/Steven_Suki_CV.pdf"
+						download
+						className="!border-teal-600 !text-teal-600 dark:!border-teal-300 dark:!text-teal-300"
+					>
+						{aboutTeaserContent.downloadCvLabel}
+					</LinkButton>
+				</div>
 			</div>
 		</section>
 	);

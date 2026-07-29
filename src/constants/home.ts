@@ -1,7 +1,7 @@
 export const heroContent = {
 	availability: "Available for new opportunities",
 	greeting: "Hi! I am",
-	bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur reprehenderit nobis enim doloribus maiores amet quia neque fuga hic sit dolorem necessitatibus ullam eveniet perspiciatis, debitis praesentium in eum est.",
+	bio: "Software developer with hands-on experience across the full development lifecycle, building backend services, system integrations, and user-facing platforms with Next.js, React, Node.js, and Golang. Currently serving as Technical Lead on a cloud-native platform project.",
 	ctaLabel: "Contact Me",
 	secondaryCtaLabel: "View My Work",
 };
@@ -11,8 +11,9 @@ export const aboutTeaserContent = {
 	headingPrefix: "About",
 	headingHighlight: "Me",
 	description:
-		"Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur reprehenderit nobis enim doloribus maiores amet quia neque fuga hic sit dolorem necessitatibus ullam eveniet perspiciatis.",
+		"Comfortable working across the JavaScript/TypeScript ecosystem as well as Golang, with a track record of adapting to backend, fullstack, and technical leadership roles across client-based, fast-paced environments.",
 	ctaLabel: "Read More",
+	downloadCvLabel: "Download CV",
 };
 
 export const techStackContent = {

@@ -2,9 +2,10 @@ export const siteConfig = {
 	url: "https://stevensuki.vercel.app",
 	name: "Steven Suki",
 	shortName: "StevSuki",
-	role: "Native Developer",
+	role: "Software Developer",
 	title: "Portofolio - Steven Suki",
-	description: "Portofolio of Steven Suki, a native developer building mobile and web applications.",
+	description:
+		"Portfolio of Steven Suki, a software developer building backend services, system integrations, and full-stack web applications.",
 	email: "stevensuki64@gmail.com",
 	socials: {
 		instagram: "https://www.instagram.com/stevensuki_8/",
