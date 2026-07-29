@@ -1,5 +1,9 @@
+import { isOpenToWork } from "@/lib/openToWork";
+
 export const heroContent = {
+	isOpenToWork,
 	availability: "Available for new opportunities",
+	unavailability: "Not currently open to work",
 	greeting: "Hi! I am",
 	bio: "Software developer with hands-on experience across the full development lifecycle, building backend services, system integrations, and user-facing platforms with Next.js, React, Node.js, and Golang. Currently serving as Technical Lead on a cloud-native platform project.",
 	ctaLabel: "Contact Me",
@@ -39,6 +43,8 @@ export const contactCtaContent = {
 	eyebrow: "Let's talk",
 	headingPrefix: "Let's",
 	headingHighlight: "Work Together",
-	description: "Have a project in mind? Feel free to reach out and let's talk about it.",
+	description: isOpenToWork
+		? "I'm open to new job opportunities. Feel free to reach out and let's talk about it."
+		: "Feel free to reach out — I'd love to connect and talk about it.",
 	ctaLabel: "Contact Me",
 };

@@ -33,13 +33,20 @@ export default function MainSection() {
 				/>
 			</div>
 			<div className="relative z-10 flex flex-col md:w-[50%] items-center text-center md:text-start md:items-start animate-fade-up-delayed">
-				<span className="inline-flex items-center gap-2 px-4 py-1.5 mb-4 border border-teal-600/40 dark:border-teal-300/40 rounded-full text-sm text-teal-600 dark:text-teal-300 bg-teal-600/5 dark:bg-teal-300/5">
-					<span className="relative flex w-2 h-2">
-						<span className="absolute inline-flex w-full h-full rounded-full bg-teal-600 dark:bg-teal-300 opacity-75 animate-ping" />
-						<span className="relative inline-flex w-2 h-2 rounded-full bg-teal-600 dark:bg-teal-300" />
+				{heroContent.isOpenToWork ? (
+					<span className="inline-flex items-center gap-2 px-4 py-1.5 mb-4 border border-teal-600/40 dark:border-teal-300/40 rounded-full text-sm text-teal-600 dark:text-teal-300 bg-teal-600/5 dark:bg-teal-300/5">
+						<span className="relative flex w-2 h-2">
+							<span className="absolute inline-flex w-full h-full rounded-full bg-teal-600 dark:bg-teal-300 opacity-75 animate-ping" />
+							<span className="relative inline-flex w-2 h-2 rounded-full bg-teal-600 dark:bg-teal-300" />
+						</span>
+						{heroContent.availability}
 					</span>
-					{heroContent.availability}
-				</span>
+				) : (
+					<span className="inline-flex items-center gap-2 px-4 py-1.5 mb-4 border border-slate-400/40 dark:border-gray-500/40 rounded-full text-sm text-slate-500 dark:text-gray-400 bg-slate-500/5 dark:bg-gray-500/5">
+						<span className="w-2 h-2 rounded-full bg-slate-400 dark:bg-gray-500" />
+						{heroContent.unavailability}
+					</span>
+				)}
 				<h1 className="text-5xl">
 					{heroContent.greeting} <span className="text-teal-600 dark:text-teal-300">{siteConfig.name}</span>
 				</h1>

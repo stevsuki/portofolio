@@ -1,3 +1,5 @@
+import { isOpenToWork } from "@/lib/openToWork";
+
 export const aboutPageContent = {
 	eyebrow: "Get to know me",
 	headingPrefix: "About",
@@ -30,8 +32,9 @@ export const contactPageContent = {
 	eyebrow: "Contact",
 	headingPrefix: "Get In",
 	headingHighlight: "Touch",
-	description:
-		"Have a project in mind or just want to say hi? My inbox is always open — I'll get back to you as soon as I can.",
+	description: isOpenToWork
+		? "I'm open to new job opportunities and would love to hear from you. Feel free to reach out — my inbox is always open, and I'll get back to you as soon as I can."
+		: "Thanks for stopping by! Feel free to reach out — my inbox is always open, and I'll get back to you as soon as I can.",
 	emailCtaLabel: "Send an Email",
 	socialsLabel: "or find me on",
 };
