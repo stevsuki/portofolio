@@ -10,11 +10,13 @@ html {
 :root {
   --background: #edf0f4;
   --foreground: #1e293b;
+  color-scheme: light;
 }
 
 .dark {
   --background: rgb(15, 23, 42);
   --foreground: #ffffff;
+  color-scheme: dark;
 }
 
 body {
