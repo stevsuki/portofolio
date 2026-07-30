@@ -59,7 +59,7 @@ export default function MainSection() {
 				<br />
 				<SocialIcon />
 				<br />
-				<div className="flex flex-wrap gap-4">
+				<div className="flex flex-wrap justify-center md:justify-start gap-4">
 					<LinkButton href="/contact">{heroContent.ctaLabel}</LinkButton>
 					<LinkButton href="/project" className="border-slate-900/20 dark:border-white/30">
 						{heroContent.secondaryCtaLabel}
