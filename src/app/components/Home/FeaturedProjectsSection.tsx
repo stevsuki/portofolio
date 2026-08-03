@@ -1,31 +1,42 @@
 import { projects } from "@/data/projects";
 import LinkButton from "../LinkButton";
+import Section from "../Section";
 import SectionHeading from "../SectionHeading";
 import ProjectCard from "../ProjectCard";
 import Reveal from "../Reveal";
+import SpotlightGroup from "../SpotlightGroup";
 import { featuredProjectsContent } from "@/constants/home";
 
 export default function FeaturedProjectsSection() {
 	const featuredProjects = projects.filter((project) => project.featured);
 
 	return (
-		<section className="relative flex flex-col items-center gap-10 p-10 md:p-16">
-			<div className="glow glow-blue w-[300px] h-[300px] top-0 right-0" />
-			<div className="relative z-10 flex flex-col items-center gap-10 w-full">
+		<Section
+			decoration={
+				<div className="glow glow-blue glow-drift-slow w-[420px] h-[420px] top-0 -right-20" aria-hidden="true" />
+			}
+		>
+			<Reveal>
 				<SectionHeading
 					eyebrow={featuredProjectsContent.eyebrow}
 					prefix={featuredProjectsContent.headingPrefix}
 					highlight={featuredProjectsContent.headingHighlight}
 				/>
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl w-full">
-					{featuredProjects.map((project, index) => (
-						<Reveal key={project.slug} delayMs={index * 80} className="h-full">
-							<ProjectCard project={project} />
-						</Reveal>
-					))}
-				</div>
-				<LinkButton href="/project">{featuredProjectsContent.ctaLabel}</LinkButton>
-			</div>
-		</section>
+			</Reveal>
+
+			<SpotlightGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
+				{featuredProjects.map((project, index) => (
+					<Reveal key={project.slug} delayMs={index * 90} variant="blur" className="h-full">
+						<ProjectCard project={project} />
+					</Reveal>
+				))}
+			</SpotlightGroup>
+
+			<Reveal>
+				<LinkButton href="/project" withArrow>
+					{featuredProjectsContent.ctaLabel}
+				</LinkButton>
+			</Reveal>
+		</Section>
 	);
 }

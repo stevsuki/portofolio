@@ -13,7 +13,7 @@ export default function ThemeToggle() {
 	}, []);
 
 	if (!mounted) {
-		return <div className="w-9 h-9" aria-hidden="true" />;
+		return <div className="w-10 h-10" aria-hidden="true" />;
 	}
 
 	const isDark = resolvedTheme === "dark";
@@ -23,9 +23,28 @@ export default function ThemeToggle() {
 			type="button"
 			onClick={() => setTheme(isDark ? "light" : "dark")}
 			aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-			className="flex items-center justify-center w-9 h-9 border-2 rounded-full border-slate-400 dark:border-gray-600 text-slate-500 dark:text-gray-600 hover:border-teal-600 dark:hover:border-teal-300 hover:text-teal-600 dark:hover:text-teal-300 transition-colors duration-300"
+			className="group relative flex items-center justify-center w-10 h-10 overflow-hidden rounded-full border border-line bg-surface text-muted hover:text-accent hover:border-accent/60 transition-colors duration-300"
 		>
-			{isDark ? <FiSun size={18} aria-hidden="true" /> : <FiMoon size={18} aria-hidden="true" />}
+			<span
+				className="absolute inset-0 rounded-full bg-accent/10 scale-0 group-hover:scale-100 transition-transform duration-300"
+				aria-hidden="true"
+			/>
+			{/* Both icons stay mounted and swap by rotation, so the change reads as
+			    one dial turning rather than a hard icon replacement */}
+			<FiSun
+				size={17}
+				aria-hidden="true"
+				className={`absolute transition-all duration-500 ${
+					isDark ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-50"
+				}`}
+			/>
+			<FiMoon
+				size={17}
+				aria-hidden="true"
+				className={`absolute transition-all duration-500 ${
+					isDark ? "opacity-0 rotate-90 scale-50" : "opacity-100 rotate-0 scale-100"
+				}`}
+			/>
 		</button>
 	);
 }

@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { siteConfig } from "@/constants/site";
 
 export const size = {
 	width: 32,
@@ -23,7 +24,7 @@ export default function Icon() {
 					fontFamily: "system-ui, sans-serif",
 				}}
 			>
-				SS
+				{siteConfig.initials}
 			</div>
 		),
 		{ ...size }

@@ -2,7 +2,10 @@ export const siteConfig = {
 	url: "https://stevensuki.vercel.app",
 	name: "Steven Suki",
 	shortName: "StevSuki",
+	/** Shared by the header/footer mark and the generated favicons */
+	initials: "SS",
 	role: "Software Developer",
+	tagline: "Building backend services, system integrations, and full-stack web applications.",
 	title: "Portofolio - Steven Suki",
 	description:
 		"Portfolio of Steven Suki, a software developer building backend services, system integrations, and full-stack web applications.",

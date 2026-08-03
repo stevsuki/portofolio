@@ -53,49 +53,55 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 	}, [expanded]);
 
 	return (
-		<article className="group relative flex flex-col space-y-3 p-6 h-full border-2 border-slate-900/15 dark:border-white/20 rounded-2xl bg-[#f5f6f8] dark:bg-white/[2%] shadow-sm overflow-hidden hover:border-teal-600 dark:hover:border-teal-300 hover:-translate-y-1 transition-all duration-300">
-			<div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-teal-600/0 via-teal-600 to-teal-600/0 dark:from-teal-300/0 dark:via-teal-300 dark:to-teal-300/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+		<article
+			data-spot
+			className="card card-hover spot group flex flex-col gap-3 h-full p-6 overflow-hidden"
+		>
+			<div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20" />
 
 			<div
-				className={`card-cover ${cover.bg} relative -mx-6 -mt-6 h-28 flex items-center px-6 overflow-hidden`}
+				className={`card-cover ${cover.bg} relative -mx-6 -mt-6 h-28 flex items-center px-6 overflow-hidden z-10`}
 				aria-hidden="true"
 			>
 				<div
-					className={`absolute -right-6 -top-8 w-28 h-28 ${blobShapeA} ${cover.blob} blur-md transition-transform duration-500 group-hover:scale-110`}
+					className={`absolute -right-6 -top-8 w-28 h-28 ${blobShapeA} ${cover.blob} blur-md transition-transform duration-700 group-hover:scale-110 group-hover:rotate-12`}
 				/>
 				<div
-					className={`absolute right-10 -bottom-8 w-16 h-16 ${blobShapeB} ${cover.blob} blur-sm transition-transform duration-500 group-hover:-translate-y-1`}
+					className={`absolute right-10 -bottom-8 w-16 h-16 ${blobShapeB} ${cover.blob} blur-sm transition-transform duration-700 group-hover:-translate-y-1.5`}
 				/>
 				<span className={`relative text-5xl font-bold ${cover.accent} opacity-90 select-none`}>{initial}</span>
 				{project.status && (
 					<span
-						className={`absolute top-3 right-3 px-2.5 py-0.5 text-xs rounded-full font-medium ${
+						className={`absolute top-3 right-3 inline-flex items-center gap-1.5 px-2.5 py-0.5 text-xs rounded-full font-medium backdrop-blur-sm ${
 							project.status === "Ongoing"
 								? "bg-amber-500/15 text-amber-700 dark:text-amber-300"
 								: "bg-teal-600/15 text-teal-700 dark:text-teal-200"
 						}`}
 					>
+						{project.status === "Ongoing" && (
+							<span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
+						)}
 						{project.status}
 					</span>
 				)}
 			</div>
 
-			<div className="flex items-start justify-between gap-2">
+			<div className="relative z-10 flex items-start justify-between gap-2 mt-1">
 				<div className="flex flex-col gap-0.5">
-					<h2 className="text-xl">{project.title}</h2>
-					{project.role && <p className="text-xs text-slate-500 dark:text-gray-400 italic">{project.role}</p>}
+					<h3 className="text-lg leading-snug">{project.title}</h3>
+					{project.role && <p className="font-mono text-xs text-muted">{project.role}</p>}
 				</div>
 				{(project.repoUrl || project.demoUrl) && (
-					<div className="flex gap-2 flex-shrink-0">
+					<div className="flex gap-2 shrink-0">
 						{project.repoUrl && (
 							<a
 								href={project.repoUrl}
 								target="_blank"
 								rel="noopener noreferrer"
 								aria-label={`${project.title} source code`}
-								className="text-slate-500 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-300 transition-colors"
+								className="text-muted hover:text-accent hover:-translate-y-0.5 transition-all duration-300"
 							>
-								<FiGithub size={20} aria-hidden="true" />
+								<FiGithub size={18} aria-hidden="true" />
 							</a>
 						)}
 						{project.demoUrl && (
@@ -104,21 +110,18 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 								target="_blank"
 								rel="noopener noreferrer"
 								aria-label={`${project.title} live demo`}
-								className="text-slate-500 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-300 transition-colors"
+								className="text-muted hover:text-accent hover:-translate-y-0.5 transition-all duration-300"
 							>
-								<FiExternalLink size={20} aria-hidden="true" />
+								<FiExternalLink size={18} aria-hidden="true" />
 							</a>
 						)}
 					</div>
 				)}
 			</div>
 
-			<div className="flex flex-wrap gap-2">
+			<div className="relative z-10 flex flex-wrap gap-2">
 				{tags.map((tag) => (
-					<span
-						key={tag}
-						className="px-2.5 py-0.5 text-xs rounded-full border border-teal-600/30 dark:border-teal-300/30 text-teal-600 dark:text-teal-300 bg-teal-600/5 dark:bg-teal-300/5"
-					>
+					<span key={tag} className="chip">
 						{tag}
 					</span>
 				))}
@@ -126,7 +129,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
 			<p
 				ref={descriptionRef}
-				className={`text-base text-slate-600 dark:text-gray-300 ${expanded ? "" : "line-clamp-3"}`}
+				className={`relative z-10 text-sm leading-relaxed text-muted ${expanded ? "" : "line-clamp-3"}`}
 			>
 				{project.description}
 			</p>
@@ -135,7 +138,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 				<button
 					type="button"
 					onClick={() => setExpanded((prev) => !prev)}
-					className="flex items-center gap-1 text-sm text-teal-600 dark:text-teal-300 hover:underline self-start"
+					className="relative z-10 flex items-center gap-1 self-start mt-auto pt-1 text-sm text-accent hover:gap-2 transition-all duration-300"
 				>
 					{expanded ? "Read less" : "Read more"}
 					{expanded ? (
