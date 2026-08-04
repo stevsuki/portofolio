@@ -108,22 +108,17 @@ export default function MainSection() {
 
 				<div className="order-1 md:order-2 md:col-span-5 flex justify-center">
 					<div className="relative w-full max-w-[320px] h-[320px] md:max-w-none md:h-[540px] animate-fade-up">
-						<svg width="0" height="0" className="absolute" aria-hidden="true">
-							<filter id="avatar-feather" x="-10%" y="-10%" width="120%" height="120%">
-								<feGaussianBlur in="SourceAlpha" stdDeviation="1.6" result="blurredAlpha" />
-								<feComponentTransfer in="blurredAlpha" result="smoothAlpha">
-									<feFuncA type="linear" slope="3.5" intercept="0" />
-								</feComponentTransfer>
-								<feComposite in="SourceGraphic" in2="smoothAlpha" operator="in" />
-							</filter>
-						</svg>
 						<div className="avatar-ring" aria-hidden="true" />
 						<div className="avatar-backdrop" aria-hidden="true" />
 						<Image
 							src="/assets/person.webp"
 							alt={`${siteConfig.name}, ${siteConfig.role}`}
 							fill
-							sizes="(max-width: 768px) 320px, 400px"
+							// The box is 447px wide at the widest desktop layout; the old
+							// 400px under-declared it and let the browser pick a candidate
+							// below the size it actually paints.
+							sizes="(max-width: 768px) 320px, 448px"
+							quality={90}
 							className="relative object-contain avatar-image"
 							priority
 							fetchPriority="high"

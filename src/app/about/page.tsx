@@ -32,6 +32,7 @@ export default function About() {
 								alt={siteConfig.name}
 								fill
 								sizes="(max-width: 768px) 300px, 340px"
+								quality={90}
 								className="relative object-contain"
 								priority
 								fetchPriority="high"

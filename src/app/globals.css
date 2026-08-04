@@ -318,8 +318,14 @@ body::before {
   z-index: 0;
 }
 
+/* Only the drop-shadow. There used to be an SVG `filter: url(#avatar-feather)`
+   here to soften a ragged cutout edge, but referencing an SVG filter forces the
+   element into an offscreen raster that browsers do not reliably scale to the
+   device pixel ratio — on a HiDPI screen the portrait came back visibly soft
+   whatever the source resolution was. The current cutout has clean edges and
+   needs no feathering, and CSS `drop-shadow()` is DPR-aware. */
 .avatar-image {
-  filter: url(#avatar-feather) drop-shadow(0 20px 30px rgba(15, 23, 42, 0.18));
+  filter: drop-shadow(0 20px 30px rgba(15, 23, 42, 0.18));
 }
 
 /* Conic ring behind the portrait. Rotating a masked ring is a single
