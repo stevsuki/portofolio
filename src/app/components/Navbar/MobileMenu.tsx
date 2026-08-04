@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FiMenu, FiX, FiArrowUpRight } from "react-icons/fi";
@@ -11,16 +11,46 @@ type MobileMenuProps = Readonly<{
 	onOpenChange: (isOpen: boolean) => void;
 }>;
 
+/** Skips the backdrop, which is a button only so it can be clicked away */
+const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]):not([tabindex="-1"])';
+
 export default function MobileMenu({ isOpen, onOpenChange }: MobileMenuProps) {
 	const pathname = usePathname();
+	const containerRef = useRef<HTMLDivElement>(null);
+	const toggleRef = useRef<HTMLButtonElement>(null);
 
-	// Escape closes the panel; scroll is locked so the page behind the overlay
-	// stays put while the menu is open.
+	// Escape closes the panel, scroll is locked so the page behind the overlay
+	// stays put, and Tab is kept inside the menu — an open overlay that lets
+	// focus wander onto the page underneath is unusable with a keyboard.
 	useEffect(() => {
 		if (!isOpen) return;
 
+		// The toggle outlives the panel, so capturing it here is the same node the
+		// cleanup wants to hand focus back to.
+		const toggle = toggleRef.current;
+
 		const handleKeyDown = (event: KeyboardEvent) => {
-			if (event.key === "Escape") onOpenChange(false);
+			if (event.key === "Escape") {
+				onOpenChange(false);
+				return;
+			}
+
+			if (event.key !== "Tab") return;
+
+			const focusables = containerRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR);
+			if (!focusables?.length) return;
+
+			const first = focusables[0];
+			const last = focusables[focusables.length - 1];
+			const active = document.activeElement;
+
+			if (event.shiftKey && (active === first || !containerRef.current?.contains(active))) {
+				event.preventDefault();
+				last.focus();
+			} else if (!event.shiftKey && active === last) {
+				event.preventDefault();
+				first.focus();
+			}
 		};
 
 		const previousOverflow = document.body.style.overflow;
@@ -30,12 +60,22 @@ export default function MobileMenu({ isOpen, onOpenChange }: MobileMenuProps) {
 		return () => {
 			document.body.style.overflow = previousOverflow;
 			window.removeEventListener("keydown", handleKeyDown);
+			// Closing hands focus back to the control that opened the menu instead
+			// of dropping it at the top of the document
+			toggle?.focus();
 		};
 	}, [isOpen, onOpenChange]);
 
+	// Covers the routes a link click does not: browser back/forward while the
+	// panel is open would otherwise leave it hanging over the new page.
+	useEffect(() => {
+		onOpenChange(false);
+	}, [pathname, onOpenChange]);
+
 	return (
-		<div className="md:hidden">
+		<div ref={containerRef} className="md:hidden">
 			<button
+				ref={toggleRef}
 				type="button"
 				onClick={() => onOpenChange(!isOpen)}
 				aria-label={isOpen ? "Close menu" : "Open menu"}

@@ -58,7 +58,7 @@ export default function About() {
 								{aboutPageContent.ctaLabel}
 							</LinkButton>
 							<LinkButton
-								href="/Steven_Suki_CV.pdf"
+								href={siteConfig.cvUrl}
 								download
 								icon={<FiDownload size={16} aria-hidden="true" />}
 							>

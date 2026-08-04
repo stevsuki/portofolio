@@ -3,6 +3,8 @@ import { Outfit, JetBrains_Mono } from "next/font/google";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer";
 import ThemeProvider from "./components/ThemeProvider";
+import CommandPalette from "./components/CommandPalette";
+import ScrollToTop from "./components/ScrollToTop";
 import { siteConfig } from "@/constants/site";
 import "./globals.css";
 
@@ -45,9 +47,15 @@ export default function RootLayout({
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 					{/* Anchor target for the footer's "back to top" link */}
 					<span id="top" aria-hidden="true" />
+					{/* First stop on a keyboard visit, so the navbar can be jumped */}
+					<a href="#main-content" className="skip-link">
+						Skip to content
+					</a>
 					<Navbar />
 					{children}
 					<Footer />
+					<ScrollToTop />
+					<CommandPalette />
 				</ThemeProvider>
 			</body>
 		</html>

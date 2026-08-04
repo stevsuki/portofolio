@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { projects } from "@/data/projects";
 import { projectPageContent } from "@/constants/pages";
-import Reveal from "../components/Reveal";
-import ProjectCard from "../components/ProjectCard";
 import PageIntro from "../components/PageIntro";
-import SpotlightGroup from "../components/SpotlightGroup";
+import ProjectGallery from "../components/ProjectGallery";
 
 export const metadata: Metadata = {
 	title: "Projects",
@@ -25,13 +23,7 @@ export default function Project() {
 					description={projectPageContent.description}
 				/>
 
-				<SpotlightGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
-					{projects.map((project, index) => (
-						<Reveal key={project.slug} delayMs={index * 90} variant="blur" className="h-full">
-							<ProjectCard project={project} />
-						</Reveal>
-					))}
-				</SpotlightGroup>
+				<ProjectGallery projects={projects} />
 			</div>
 		</main>
 	);

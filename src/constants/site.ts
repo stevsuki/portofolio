@@ -10,6 +10,7 @@ export const siteConfig = {
 	description:
 		"Portfolio of Steven Suki, a software developer building backend services, system integrations, and full-stack web applications.",
 	email: "stevensuki64@gmail.com",
+	cvUrl: "/Steven_Suki_CV.pdf",
 	socials: {
 		instagram: "https://www.instagram.com/stevensuki_8/",
 		linkedin: "https://www.linkedin.com/in/steven-suki-53a14b25a",

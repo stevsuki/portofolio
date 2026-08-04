@@ -5,6 +5,7 @@ import Section from "../Section";
 import SectionHeading from "../SectionHeading";
 import Reveal from "../Reveal";
 import { aboutTeaserContent } from "@/constants/home";
+import { siteConfig } from "@/constants/site";
 
 export default function AboutTeaserSection() {
 	return (
@@ -18,8 +19,7 @@ export default function AboutTeaserSection() {
 						eyebrow={aboutTeaserContent.eyebrow}
 						prefix={aboutTeaserContent.headingPrefix}
 						highlight={aboutTeaserContent.headingHighlight}
-						align="start"
-						className="items-center lg:items-start text-center lg:text-start"
+						align="responsive"
 					/>
 					<p className="text-base sm:text-lg leading-relaxed text-muted max-w-xl">
 						{aboutTeaserContent.description}
@@ -29,7 +29,7 @@ export default function AboutTeaserSection() {
 							{aboutTeaserContent.ctaLabel}
 						</LinkButton>
 						<LinkButton
-							href="/Steven_Suki_CV.pdf"
+							href={siteConfig.cvUrl}
 							download
 							icon={<FiDownload size={16} aria-hidden="true" />}
 						>

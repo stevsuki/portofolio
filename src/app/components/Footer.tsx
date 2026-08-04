@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FiArrowUp, FiMail } from "react-icons/fi";
 import SocialIcon from "./SocialIcon";
+import CopyButton from "./CopyButton";
 import Logo from "./Logo";
 import { siteConfig } from "@/constants/site";
 import { navItems } from "@/constants/nav";
@@ -36,7 +37,7 @@ export default function Footer() {
 				<div>
 					<p className="font-mono text-xs uppercase tracking-[0.14em] text-muted mb-4">Get in touch</p>
 					<ul className="flex flex-col gap-2.5">
-						<li>
+						<li className="flex items-center gap-2">
 							<a
 								href={`mailto:${siteConfig.email}`}
 								className="inline-flex items-center gap-2 text-sm text-muted hover:text-accent transition-colors duration-300 break-all"
@@ -44,10 +45,11 @@ export default function Footer() {
 								<FiMail size={14} aria-hidden="true" className="shrink-0" />
 								{siteConfig.email}
 							</a>
+							<CopyButton value={siteConfig.email} subject="email address" />
 						</li>
 						<li>
 							<a
-								href="/Steven_Suki_CV.pdf"
+								href={siteConfig.cvUrl}
 								download
 								className="text-sm text-muted hover:text-accent transition-colors duration-300"
 							>
