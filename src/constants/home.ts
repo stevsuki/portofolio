@@ -26,7 +26,10 @@ export const aboutTeaserContent = {
 	headingHighlight: "Me",
 	description:
 		"Comfortable working across the JavaScript/TypeScript ecosystem as well as Golang, with a track record of adapting to backend, fullstack, and technical leadership roles across client-based, fast-paced environments.",
-	ctaLabel: "Read More",
+	// Names its destination rather than the action. "Read More" carries no
+	// meaning out of context — for a search engine weighing anchor text, or for
+	// anyone tabbing through links without the surrounding copy.
+	ctaLabel: "More About Me",
 	downloadCvLabel: "Download CV",
 	// Each row restates a fact already stated elsewhere on the site (projects,
 	// tech stack, education) so the card stays in sync with the source content
