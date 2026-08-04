@@ -324,8 +324,18 @@ body::before {
    device pixel ratio — on a HiDPI screen the portrait came back visibly soft
    whatever the source resolution was. The current cutout has clean edges and
    needs no feathering, and CSS `drop-shadow()` is DPR-aware. */
+/* Two layers: a wide cast shadow for the drop, plus a tight one that keeps the
+   silhouette from floating. `drop-shadow()` follows the image's alpha, so both
+   trace the actual outline of the subject rather than the element box. */
 .avatar-image {
-  filter: drop-shadow(0 20px 30px rgba(15, 23, 42, 0.18));
+  filter: drop-shadow(0 24px 28px rgba(15, 23, 42, 0.3)) drop-shadow(0 4px 8px rgba(15, 23, 42, 0.16));
+}
+
+/* A navy shadow is invisible on a near-black background, so dark mode carries
+   the depth with a black cast shadow and reads the outline back out with a
+   faint accent rim instead. */
+.dark .avatar-image {
+  filter: drop-shadow(0 24px 32px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 26px rgba(var(--accent-rgb), 0.22));
 }
 
 /* Conic ring behind the portrait. Rotating a masked ring is a single
