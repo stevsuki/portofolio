@@ -87,7 +87,6 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* Weight and tracking applied once here rather than per-heading in markup,
@@ -712,6 +711,21 @@ body::before {
   animation-delay: var(--delay, 0ms);
 }
 
+/* Theme transition. `ThemeToggle` swaps the theme inside a view transition, so
+   the browser cross-fades two snapshots on the GPU instead of repainting the
+   live page. That matters here because the page carries 30+ backdrop-filtered
+   cards and 90px blurred glows — animating their colours directly meant
+   re-blurring all of them every frame.
+   Only the incoming snapshot animates: letting both fade at once would show a
+   washed-out midpoint where neither theme is fully opaque. */
+::view-transition-old(root) {
+  animation: none;
+}
+
+::view-transition-new(root) {
+  animation: fade-in 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 /* Route transition. `template.tsx` remounts on every navigation, so this replays
    per page and softens the hard swap between routes. Opacity-led and short, so
    it layers under each page's own entrance animations instead of fighting them. */
@@ -903,5 +917,11 @@ body::before {
     transform: none;
     filter: none;
     transition: none;
+  }
+
+  /* Theme still swaps, it just lands in one frame instead of cross-fading */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
   }
 }

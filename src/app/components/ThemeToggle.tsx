@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { FiMoon, FiSun } from "react-icons/fi";
 import { useTheme } from "next-themes";
+import { switchTheme } from "@/lib/theme";
 
 export default function ThemeToggle() {
 	const { resolvedTheme, setTheme } = useTheme();
@@ -21,7 +22,7 @@ export default function ThemeToggle() {
 	return (
 		<button
 			type="button"
-			onClick={() => setTheme(isDark ? "light" : "dark")}
+			onClick={() => switchTheme(setTheme, isDark ? "light" : "dark")}
 			aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
 			className="group relative flex items-center justify-center w-10 h-10 overflow-hidden rounded-full border border-line bg-surface text-muted hover:text-accent hover:border-accent/60 transition-colors duration-300"
 		>

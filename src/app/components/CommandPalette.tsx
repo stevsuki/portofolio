@@ -22,6 +22,7 @@ import { navItems } from "@/constants/nav";
 import { socials } from "@/data/socials";
 import { siteConfig } from "@/constants/site";
 import { COMMAND_PALETTE_EVENT } from "@/lib/commandPalette";
+import { switchTheme } from "@/lib/theme";
 
 type CommandGroup = "Go to" | "Actions" | "Elsewhere";
 
@@ -94,7 +95,7 @@ export default function CommandPalette() {
 				keywords: "theme dark light appearance mode toggle",
 				icon: isDark ? FiSun : FiMoon,
 				keepOpen: true,
-				run: () => setTheme(isDark ? "light" : "dark"),
+				run: () => switchTheme(setTheme, isDark ? "light" : "dark"),
 			},
 			{
 				id: "action:copy-email",

@@ -44,7 +44,11 @@ export default function RootLayout({
 	return (
 		<html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
 			<body className={`${outfit.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
-				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+				{/* disableTransitionOnChange is what keeps the theme swap cheap: without
+				    it every `transition-colors` on the page repaints for its full
+				    duration at once. The visible fade is handled by the view
+				    transition in ThemeToggle instead, which the GPU composites. */}
+				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
 					{/* Anchor target for the footer's "back to top" link */}
 					<span id="top" aria-hidden="true" />
 					{/* First stop on a keyboard visit, so the navbar can be jumped */}
