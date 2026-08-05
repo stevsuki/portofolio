@@ -204,6 +204,12 @@ button:focus-visible {
   animation: gradient-pan 8s ease-in-out infinite alternate;
 }
 
+/* Set by GradientTextMotion once the heading leaves the viewport. The pan is a
+   clipped-to-glyphs repaint, so it is worth stopping when nobody can see it. */
+.gradient-text[data-idle="true"] {
+  animation-play-state: paused;
+}
+
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 0.75rem;

@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import ThemeProvider from "./components/ThemeProvider";
 import CommandPalette from "./components/CommandPalette";
 import ScrollToTop from "./components/ScrollToTop";
+import GradientTextMotion from "./components/GradientTextMotion";
 import { siteConfig } from "@/constants/site";
 import "./globals.css";
 
@@ -60,6 +61,7 @@ export default function RootLayout({
 					<Footer />
 					<ScrollToTop />
 					<CommandPalette />
+					<GradientTextMotion />
 				</ThemeProvider>
 			</body>
 		</html>

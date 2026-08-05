@@ -67,7 +67,7 @@ export default function MainSection() {
 					</h1>
 
 					<div
-						className="animate-hero flex items-baseline gap-2.5 mt-4 text-2xl sm:text-3xl font-medium"
+						className="animate-hero flex items-center gap-2.5 mt-4 text-2xl sm:text-3xl font-medium"
 						style={{ "--delay": "240ms" } as React.CSSProperties}
 					>
 						<span className="font-mono text-base text-accent/70" aria-hidden="true">
