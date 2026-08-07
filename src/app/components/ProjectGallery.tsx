@@ -71,7 +71,7 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
 				{activeTag === ALL_TAG ? "" : ` built with ${activeTag}`}
 			</output>
 
-			<SpotlightGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
+			<SpotlightGroup tilt className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
 				{filtered.map((project, index) => (
 					// Keyed by the active filter as well as the slug: remounting is what
 					// replays the reveal, so a change of filter reads as new content

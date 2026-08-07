@@ -55,7 +55,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 	return (
 		<article
 			data-spot
-			className="card card-hover spot group flex flex-col gap-3 h-full p-6 overflow-hidden"
+			className="card card-hover spot tilt group flex flex-col gap-3 h-full p-6 overflow-hidden"
 		>
 			<div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20" />
 

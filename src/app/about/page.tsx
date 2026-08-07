@@ -7,12 +7,15 @@ import Reveal from "../components/Reveal";
 import Section from "../components/Section";
 import SectionHeading from "../components/SectionHeading";
 import { aboutPageContent } from "@/constants/pages";
+import { pageMetadata } from "@/lib/metadata";
 import { experienceContent } from "@/constants/home";
 import { siteConfig } from "@/constants/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
 	title: "About",
-};
+	description: aboutPageContent.ogDescription,
+	path: "/about",
+});
 
 export default function About() {
 	return (

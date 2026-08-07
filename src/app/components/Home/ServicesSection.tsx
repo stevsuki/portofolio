@@ -24,10 +24,13 @@ export default function ServicesSection() {
 				/>
 			</Reveal>
 
-			<SpotlightGroup className="grid md:grid-cols-3 gap-5 w-full">
+			<SpotlightGroup tilt className="grid md:grid-cols-3 gap-5 w-full">
 				{services.map((service, index) => (
 					<Reveal key={service.title} delayMs={index * 110} variant="blur" className="h-full">
-						<article data-spot className="card card-sheen card-hover spot group flex flex-col gap-4 h-full p-7">
+						<article
+							data-spot
+							className="card card-sheen card-hover spot tilt group flex flex-col gap-4 h-full p-7"
+						>
 							<span className="relative flex items-center justify-center w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20 text-accent group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
 								<service.icon size={22} aria-hidden="true" />
 							</span>

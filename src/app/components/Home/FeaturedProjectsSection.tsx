@@ -24,7 +24,7 @@ export default function FeaturedProjectsSection() {
 				/>
 			</Reveal>
 
-			<SpotlightGroup className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
+			<SpotlightGroup tilt className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
 				{featuredProjects.map((project, index) => (
 					<Reveal key={project.slug} delayMs={index * 90} variant="blur" className="h-full">
 						<ProjectCard project={project} />

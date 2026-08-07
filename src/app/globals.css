@@ -186,6 +186,49 @@ button:focus-visible {
   }
 }
 
+/* Pointer-tracked 3D tilt. Angles are written as --tilt-x/--tilt-y by
+   SpotlightGroup; without JS the card simply stays flat.
+   Both states are declared together, and the hover lift moves into the same
+   transform: `.card-hover:hover` sets `transform` too, so leaving them as
+   separate rules meant whichever applied last silently discarded the other —
+   and hovering is the only time a tilt exists at all. */
+.card-hover.tilt,
+.card-hover.tilt:hover {
+  transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg))
+    translateY(var(--tilt-lift, 0px));
+}
+
+.card-hover.tilt:hover {
+  --tilt-lift: -4px;
+}
+
+/* Tracks the cursor near-instantly, but keeps the card's slower easing for the
+   trip back to flat once the pointer leaves. Only `transform` is re-timed —
+   inheriting the shorter duration would make the border and shadow snap too. */
+.tilt[data-tilting="true"] {
+  transition: transform 0.12s linear, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* ---------------------------------------------------------------------------
+   Magnetic controls
+--------------------------------------------------------------------------- */
+
+/* Offsets are written as --magnet-x/--magnet-y by Magnetic once the cursor is
+   inside the element's field. Kept as a 2D translate: a translate3d would
+   promote every magnet to its own compositing layer for the entire life of the
+   page, to animate a few pixels a fraction of the time. */
+.magnetic {
+  display: inline-flex;
+  transform: translate(var(--magnet-x, 0), var(--magnet-y, 0));
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Short while following the cursor, long on release — the difference is what
+   makes it read as a pull and a snap back rather than as lag. */
+.magnetic[data-pulled="true"] {
+  transition-duration: 0.15s;
+}
+
 /* ---------------------------------------------------------------------------
    Type accents
 --------------------------------------------------------------------------- */
@@ -906,7 +949,12 @@ body::before {
   }
 
   .btn:hover,
-  .card-hover:hover {
+  .card-hover:hover,
+  /* Restated at the tilt rule's own specificity, which otherwise outranks the
+     line above and would leave the hover lift in place */
+  .card-hover.tilt,
+  .card-hover.tilt:hover,
+  .magnetic {
     transform: none;
   }
 

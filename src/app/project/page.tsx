@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import { projects } from "@/data/projects";
 import { projectPageContent } from "@/constants/pages";
+import { pageMetadata } from "@/lib/metadata";
 import PageIntro from "../components/PageIntro";
 import ProjectGallery from "../components/ProjectGallery";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
 	title: "Projects",
-};
+	description: projectPageContent.description,
+	path: "/project",
+});
 
 export default function Project() {
 	return (

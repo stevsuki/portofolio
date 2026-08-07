@@ -1,5 +1,6 @@
 import { FiMail } from "react-icons/fi";
 import LinkButton from "../LinkButton";
+import Magnetic from "../Magnetic";
 import Section from "../Section";
 import SectionHeading from "../SectionHeading";
 import Reveal from "../Reveal";
@@ -32,9 +33,11 @@ export default function ContactCtaSection() {
 						</p>
 
 						<div className="flex flex-wrap items-center justify-center gap-3">
-							<LinkButton href="/contact" variant="primary" withArrow>
-								{contactCtaContent.ctaLabel}
-							</LinkButton>
+							<Magnetic>
+								<LinkButton href="/contact" variant="primary" withArrow>
+									{contactCtaContent.ctaLabel}
+								</LinkButton>
+							</Magnetic>
 							<LinkButton
 								href={`mailto:${siteConfig.email}`}
 								icon={<FiMail size={16} aria-hidden="true" />}

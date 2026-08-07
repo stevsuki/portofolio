@@ -25,6 +25,10 @@ export const config = {
 	matcher: [
 		// Skip Next internals, the generated metadata routes and anything with a
 		// file extension (the CV and everything under public/assets).
-		"/((?!_next/|icon|apple-icon|sitemap\\.xml|robots\\.txt|.*\\..*).*)",
+		// `opengraph-image` is matched anywhere in the path rather than only at the
+		// start: every route generates its own card, so the share image for /about
+		// lives at /about/opengraph-image and would otherwise be redirected home —
+		// leaving the crawler with no preview at all.
+		"/((?!_next/|icon|apple-icon|sitemap\\.xml|robots\\.txt|.*opengraph-image|.*\\..*).*)",
 	],
 };

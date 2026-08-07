@@ -10,6 +10,10 @@ export const aboutPageContent = {
 	],
 	ctaLabel: "See My Projects",
 	downloadCvLabel: "Download CV",
+	// Share cards and search results get their own copy: the page paragraphs are
+	// written to be read at length, which truncates badly in a link preview.
+	ogDescription:
+		"Software developer working across backend services, system integrations, and full-stack platforms — currently Technical Lead on a cloud-native project.",
 	education: {
 		eyebrow: "Academic background",
 		headingPrefix: "My",
@@ -37,4 +41,5 @@ export const contactPageContent = {
 		: "Thanks for stopping by! Feel free to reach out — my inbox is always open, and I'll get back to you as soon as I can.",
 	emailCtaLabel: "Send an Email",
 	socialsLabel: "or find me on",
+	ogDescription: "Have a project, a role, or a question in mind? My inbox is always open.",
 };

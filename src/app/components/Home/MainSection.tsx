@@ -2,6 +2,7 @@ import Image from "next/image";
 import { FiArrowDown } from "react-icons/fi";
 import { SiGo, SiNextdotjs, SiNodedotjs } from "react-icons/si";
 import LinkButton from "../LinkButton";
+import Magnetic from "../Magnetic";
 import SocialIcon from "../SocialIcon";
 import RotatingText from "../RotatingText";
 import { siteConfig } from "@/constants/site";
@@ -91,10 +92,14 @@ export default function MainSection() {
 						className="animate-hero flex flex-wrap justify-center md:justify-start gap-3 mt-9"
 						style={{ "--delay": "400ms" } as React.CSSProperties}
 					>
-						<LinkButton href="/contact" variant="primary" withArrow>
-							{heroContent.ctaLabel}
-						</LinkButton>
-						<LinkButton href="/project">{heroContent.secondaryCtaLabel}</LinkButton>
+						<Magnetic>
+							<LinkButton href="/contact" variant="primary" withArrow>
+								{heroContent.ctaLabel}
+							</LinkButton>
+						</Magnetic>
+						<Magnetic>
+							<LinkButton href="/project">{heroContent.secondaryCtaLabel}</LinkButton>
+						</Magnetic>
 					</div>
 
 					<div

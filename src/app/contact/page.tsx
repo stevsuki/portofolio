@@ -5,10 +5,13 @@ import PageIntro from "../components/PageIntro";
 import CopyButton from "../components/CopyButton";
 import { siteConfig } from "@/constants/site";
 import { contactPageContent } from "@/constants/pages";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
 	title: "Contact",
-};
+	description: contactPageContent.ogDescription,
+	path: "/contact",
+});
 
 export default function Contact() {
 	return (
