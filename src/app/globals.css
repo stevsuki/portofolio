@@ -109,11 +109,19 @@ p {
   background: rgba(var(--accent-rgb), 0.25);
 }
 
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
-  border-radius: 6px;
+/* An outline traces the element's own `border-radius`, so the radius here is
+   only a fallback that keeps the ring off the sharp corners of a plain text
+   link. It has to lose to anything that states a radius of its own, or a pill
+   picks up square corners the moment it takes focus — hence the layer: `.btn`
+   and friends are unlayered and Tailwind's `rounded-*` sits in `utilities`,
+   both of which outrank `base` no matter how specific the selector here is. */
+@layer base {
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 6px;
+  }
 }
 
 /* Themed scrollbar keeps the browser chrome from breaking the dark surface */
