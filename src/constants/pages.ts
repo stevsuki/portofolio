@@ -32,6 +32,28 @@ export const projectPageContent = {
 	description: "A collection of client projects I've delivered as a backend, fullstack, and technical lead developer.",
 };
 
+export const projectDetailContent = {
+	eyebrow: "Case study",
+	backLabel: "All projects",
+	// Each heading names a question a reviewer is already asking, rather than a
+	// generic label like "Details" — the wording is what prompts the write-up
+	// to answer something instead of restating the summary.
+	contextHeading: "The problem",
+	contributionsHeading: "What I did",
+	decisionsHeading: "Key decisions",
+	outcomesHeading: "Outcomes",
+	stackHeading: "Tech stack",
+	roleLabel: "Role",
+	statusLabel: "Status",
+	periodLabel: "Period",
+	teamLabel: "Team",
+	repoLabel: "Source code",
+	demoLabel: "Live demo",
+	prevLabel: "Previous project",
+	nextLabel: "Next project",
+	ctaLabel: "Browse all projects",
+};
+
 export const contactPageContent = {
 	eyebrow: "Contact",
 	headingPrefix: "Get In",

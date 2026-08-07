@@ -1,9 +1,16 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { navItems } from "@/constants/nav";
+import { projects } from "@/data/projects";
 
 // The nav is the single source of truth for the pages that actually exist, so
-// adding a route there is enough to keep it out of the redirect below.
-const knownRoutes = new Set(navItems.map((item) => item.href));
+// adding a route there is enough to keep it out of the redirect below. Case
+// studies are not in the nav, so they are derived from the project data for the
+// same reason — adding a project should be all it takes to make its page
+// reachable, with no second list to remember to update.
+const knownRoutes = new Set([
+	...navItems.map((item) => item.href),
+	...projects.map((project) => `/project/${project.slug}`),
+]);
 
 export function proxy(request: NextRequest) {
 	const { pathname } = request.nextUrl;

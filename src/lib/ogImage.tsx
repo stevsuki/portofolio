@@ -26,6 +26,15 @@ const BRAND_GRADIENT = `linear-gradient(100deg, ${ACCENT}, ${SKY} 45%, ${VIOLET}
     for tiling a gradient with `background-size`. */
 const GRID_STEP = 100;
 
+/** Headings range from "Steven Suki" to a full project title, and Satori has no
+    way to fit text to a box. Stepping the size by character count keeps a long
+    case-study name on two lines instead of overrunning the card. */
+const HEADING_SIZE_STEPS = [
+	{ upToChars: 24, fontSize: 88 },
+	{ upToChars: 40, fontSize: 70 },
+	{ upToChars: Infinity, fontSize: 56 },
+];
+
 type OgImageContent = Readonly<{
 	eyebrow: string;
 	/** Plain lead-in of the heading — empty when the whole line is highlighted */
@@ -40,6 +49,11 @@ type OgImageContent = Readonly<{
  * own copy, so the layout, palette and branding stay defined in a single place.
  */
 export function renderOgImage({ eyebrow, title, highlight, description }: OgImageContent) {
+	const headingLength = `${title ?? ""} ${highlight}`.trim().length;
+	// The final step is unbounded, so this always matches — the fallback only
+	// satisfies the type.
+	const headingFontSize = HEADING_SIZE_STEPS.find((step) => headingLength <= step.upToChars)?.fontSize ?? 56;
+
 	return new ImageResponse(
 		(
 			<div
@@ -166,7 +180,16 @@ export function renderOgImage({ eyebrow, title, highlight, description }: OgImag
 						{eyebrow}
 					</div>
 
-					<div style={{ display: "flex", flexWrap: "wrap", gap: 20, fontSize: 88, fontWeight: 700, letterSpacing: -3 }}>
+					<div
+						style={{
+							display: "flex",
+							flexWrap: "wrap",
+							gap: 20,
+							fontSize: headingFontSize,
+							fontWeight: 700,
+							letterSpacing: -3,
+						}}
+					>
 						{title ? <div style={{ display: "flex" }}>{title}</div> : null}
 						<div
 							style={{
