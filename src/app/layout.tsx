@@ -56,6 +56,12 @@ export const metadata: Metadata = {
 		title: siteConfig.title,
 		description: siteConfig.description,
 	},
+	// Proves ownership of the domain to Google Search Console. The value is the
+	// token from the "HTML tag" verification method and must stay on the site
+	// for the property to remain verified.
+	verification: {
+		google: "fRASa4GJyCevi5psDLBuiM2FFe0lrEsJMlpXMCS-J8s",
+	},
 	robots: {
 		index: true,
 		follow: true,
