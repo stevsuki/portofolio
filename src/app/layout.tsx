@@ -8,7 +8,22 @@ import ScrollToTop from "./components/ScrollToTop";
 import GradientTextMotion from "./components/GradientTextMotion";
 import { siteConfig } from "@/constants/site";
 import { jsonLd } from "@/lib/jsonLd";
+import { accentIds } from "@/data/accents";
+import { ACCENT_STORAGE_KEY } from "@/lib/accent";
 import "./globals.css";
+
+/**
+ * next-themes ships a blocking script for the light/dark class; the accent is
+ * ours to restore, and it has to happen before the first paint or the page
+ * flashes teal for a frame before switching to the stored colour.
+ *
+ * The id list is interpolated from the same array the picker renders, so a
+ * palette added there is accepted here without a second edit. Nothing here
+ * touches user input — a stored value that is not on the list is ignored.
+ */
+const accentScript = `(function(){try{var a=localStorage.getItem(${JSON.stringify(
+	ACCENT_STORAGE_KEY,
+)});if(${JSON.stringify(accentIds)}.indexOf(a)>-1)document.documentElement.dataset.accent=a}catch(e){}})()`;
 
 const outfit = Outfit({
 	weight: ["300", "400", "500", "600", "700"],
@@ -88,6 +103,9 @@ export default function RootLayout({
 	return (
 		<html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
 			<body className={`${outfit.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+				{/* First thing in the body so the stored accent lands on <html> before
+				    anything is painted, the same slot next-themes uses for its own */}
+				<script dangerouslySetInnerHTML={{ __html: accentScript }} />
 				{/* Machine-readable identity for search engines. Rendered once at the
 				    root because the graph describes the site and its author, not any
 				    one page. */}

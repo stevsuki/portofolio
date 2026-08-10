@@ -5,6 +5,7 @@ import NavbarScrollEffect from "./NavbarScrollEffect";
 import NavLinks from "./NavLinks";
 import MobileMenu from "./MobileMenu";
 import ThemeToggle from "../ThemeToggle";
+import AccentPicker from "../AccentPicker";
 import CommandPaletteTrigger from "../CommandPaletteTrigger";
 import Logo from "../Logo";
 
@@ -21,6 +22,7 @@ export default function Navbar() {
 
 					<div className="flex items-center gap-2">
 						<CommandPaletteTrigger />
+						<AccentPicker />
 						<ThemeToggle />
 						<MobileMenu isOpen={isMenuOpen} onOpenChange={setIsMenuOpen} />
 					</div>

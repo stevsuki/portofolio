@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FiMenu, FiX, FiArrowUpRight } from "react-icons/fi";
 import { navItems } from "@/constants/nav";
+import AccentSwatches from "../AccentSwatches";
 
 type MobileMenuProps = Readonly<{
 	isOpen: boolean;
@@ -94,32 +95,47 @@ export default function MobileMenu({ isOpen, onOpenChange }: MobileMenuProps) {
 						onClick={() => onOpenChange(false)}
 						className="fixed inset-0 top-18 -z-10 bg-[var(--background)]/60 backdrop-blur-sm cursor-default"
 					/>
-					<ul className="absolute left-0 right-0 top-18 flex flex-col gap-1 p-4 bg-[var(--background)]/95 backdrop-blur-xl border-b border-line shadow-2xl animate-menu-in">
-						{navItems.map((item, index) => {
-							const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
-							return (
-								<li
-									key={item.href}
-									className="animate-hero"
-									style={{ "--delay": `${index * 45}ms` } as React.CSSProperties}
-								>
-									<Link
-										href={item.href}
-										onClick={() => onOpenChange(false)}
-										aria-current={isActive ? "page" : undefined}
-										className={`flex items-center justify-between px-4 py-3 rounded-xl text-lg transition-colors duration-300 ${
-											isActive
-												? "bg-accent/10 text-accent border border-accent/25"
-												: "text-muted border border-transparent hover:bg-surface hover:text-ink"
-										}`}
+					<div className="absolute left-0 right-0 top-18 flex flex-col p-4 bg-[var(--background)]/95 backdrop-blur-xl border-b border-line shadow-2xl animate-menu-in">
+						<ul className="flex flex-col gap-1">
+							{navItems.map((item, index) => {
+								const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+								return (
+									<li
+										key={item.href}
+										className="animate-hero"
+										style={{ "--delay": `${index * 45}ms` } as React.CSSProperties}
 									>
-										{item.label}
-										<FiArrowUpRight size={18} aria-hidden="true" className="opacity-60" />
-									</Link>
-								</li>
-							);
-						})}
-					</ul>
+										<Link
+											href={item.href}
+											onClick={() => onOpenChange(false)}
+											aria-current={isActive ? "page" : undefined}
+											className={`flex items-center justify-between px-4 py-3 rounded-xl text-lg transition-colors duration-300 ${
+												isActive
+													? "bg-accent/10 text-accent border border-accent/25"
+													: "text-muted border border-transparent hover:bg-surface hover:text-ink"
+											}`}
+										>
+											{item.label}
+											<FiArrowUpRight size={18} aria-hidden="true" className="opacity-60" />
+										</Link>
+									</li>
+								);
+							})}
+						</ul>
+
+						{/* The navbar's accent popover is hidden below `sm`, so the swatches
+						    live here instead — inline, since the panel has the room a
+						    header row does not */}
+						<div
+							className="animate-hero flex items-center justify-between gap-4 mt-2 pt-4 px-4 pb-1 border-t border-line"
+							style={{ "--delay": `${navItems.length * 45}ms` } as React.CSSProperties}
+						>
+							<span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted">
+								Accent
+							</span>
+							<AccentSwatches />
+						</div>
+					</div>
 				</>
 			)}
 		</div>

@@ -54,6 +54,129 @@
   color-scheme: dark;
 }
 
+/* ---------------------------------------------------------------------------
+   Accent palettes
+
+   A second axis on top of light/dark: `data-accent` on <html> swaps the five
+   colour tokens above and nothing else, so every card, glow, chip and gradient
+   follows without a single component knowing an accent exists.
+
+   Each pair below has to come after `:root` and `.dark` to win — `:root` and
+   `[data-accent]` carry the same specificity, so source order decides — and the
+   dark block has to repeat the attribute rather than rely on `.dark` alone, or
+   the light values would override it in dark mode.
+
+   The shape of each palette follows the default: light takes the 600/700 pair,
+   dark the lighter 300/200 pair with the 400 shade for `--accent-rgb`, which is
+   what fills and glows are tinted with. `teal` is absent on purpose — it is the
+   default already sitting in `:root`.
+
+   `.swatch-*` is the dot the picker draws. It lives here, beside the palette it
+   previews, so the two cannot drift apart unnoticed.
+--------------------------------------------------------------------------- */
+
+:root[data-accent="blue"] {
+  --accent: #2563eb;
+  --accent-ink: #1d4ed8;
+  --accent-rgb: 37, 99, 235;
+  --sky-rgb: 8, 145, 178;
+  --violet-rgb: 79, 70, 229;
+}
+
+.dark[data-accent="blue"] {
+  --accent: #93c5fd;
+  --accent-ink: #bfdbfe;
+  --accent-rgb: 96, 165, 250;
+  --sky-rgb: 34, 211, 238;
+  --violet-rgb: 129, 140, 248;
+}
+
+:root[data-accent="violet"] {
+  --accent: #7c3aed;
+  --accent-ink: #6d28d9;
+  --accent-rgb: 124, 58, 237;
+  --sky-rgb: 37, 99, 235;
+  --violet-rgb: 219, 39, 119;
+}
+
+.dark[data-accent="violet"] {
+  --accent: #c4b5fd;
+  --accent-ink: #ddd6fe;
+  --accent-rgb: 167, 139, 250;
+  --sky-rgb: 96, 165, 250;
+  --violet-rgb: 244, 114, 182;
+}
+
+:root[data-accent="rose"] {
+  --accent: #e11d48;
+  --accent-ink: #be123c;
+  --accent-rgb: 225, 29, 72;
+  --sky-rgb: 234, 88, 12;
+  --violet-rgb: 192, 38, 211;
+}
+
+.dark[data-accent="rose"] {
+  --accent: #fda4af;
+  --accent-ink: #fecdd3;
+  --accent-rgb: 251, 113, 133;
+  --sky-rgb: 251, 146, 60;
+  --violet-rgb: 232, 121, 249;
+}
+
+/* Amber sits a shade deeper than the others in light mode: the 600 that matches
+   the rest of the set drops to roughly 3:1 against the light background, which
+   is thin for the small text `text-accent` is used on. */
+:root[data-accent="amber"] {
+  --accent: #b45309;
+  --accent-ink: #92400e;
+  --accent-rgb: 180, 83, 9;
+  --sky-rgb: 202, 138, 4;
+  --violet-rgb: 220, 38, 38;
+}
+
+.dark[data-accent="amber"] {
+  --accent: #fcd34d;
+  --accent-ink: #fde68a;
+  --accent-rgb: 251, 191, 36;
+  --sky-rgb: 250, 204, 21;
+  --violet-rgb: 248, 113, 113;
+}
+
+.swatch-teal {
+  background-color: #0d9488;
+}
+.dark .swatch-teal {
+  background-color: #5eead4;
+}
+
+.swatch-blue {
+  background-color: #2563eb;
+}
+.dark .swatch-blue {
+  background-color: #93c5fd;
+}
+
+.swatch-violet {
+  background-color: #7c3aed;
+}
+.dark .swatch-violet {
+  background-color: #c4b5fd;
+}
+
+.swatch-rose {
+  background-color: #e11d48;
+}
+.dark .swatch-rose {
+  background-color: #fda4af;
+}
+
+.swatch-amber {
+  background-color: #b45309;
+}
+.dark .swatch-amber {
+  background-color: #fcd34d;
+}
+
 @theme inline {
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
