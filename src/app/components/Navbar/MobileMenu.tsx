@@ -5,7 +5,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FiMenu, FiX, FiArrowUpRight } from "react-icons/fi";
 import { navItems } from "@/constants/nav";
-import AccentSwatches from "../AccentSwatches";
+import SwatchRow from "../SwatchRow";
+import { accentSetting } from "@/data/accents";
+import { backgroundSetting } from "@/data/backgrounds";
 
 type MobileMenuProps = Readonly<{
 	isOpen: boolean;
@@ -123,17 +125,30 @@ export default function MobileMenu({ isOpen, onOpenChange }: MobileMenuProps) {
 							})}
 						</ul>
 
-						{/* The navbar's accent popover is hidden below `sm`, so the swatches
-						    live here instead — inline, since the panel has the room a
-						    header row does not */}
+						{/* The navbar's popover is hidden below `sm`, so the swatches live
+						    here instead — inline, since the panel has the room a header row
+						    does not */}
 						<div
-							className="animate-hero flex items-center justify-between gap-4 mt-2 pt-4 px-4 pb-1 border-t border-line"
+							className="animate-hero flex flex-col gap-3 mt-2 pt-4 px-4 pb-1 border-t border-line"
 							style={{ "--delay": `${navItems.length * 45}ms` } as React.CSSProperties}
 						>
-							<span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted">
-								Accent
-							</span>
-							<AccentSwatches />
+							<div className="flex items-center justify-between gap-4">
+								<span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted">
+									Accent
+								</span>
+								<SwatchRow setting={accentSetting} swatchPrefix="swatch" legend="Accent colour" />
+							</div>
+							<div className="flex items-center justify-between gap-4">
+								<span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted">
+									Background
+								</span>
+								<SwatchRow
+									setting={backgroundSetting}
+									swatchPrefix="swatch-bg"
+									legend="Background tone"
+									strongBorder
+								/>
+							</div>
 						</div>
 					</div>
 				</>

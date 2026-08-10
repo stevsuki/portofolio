@@ -177,6 +177,91 @@
   background-color: #fcd34d;
 }
 
+/* ---------------------------------------------------------------------------
+   Background tones
+
+   A third axis, on the same mechanism as the accent above: `data-bg` on <html>.
+   Each tone only restates the base and the two solid surfaces — `--surface`,
+   `--line` and `--line-strong` are low-alpha and `--foreground`/`--muted` are
+   near-black or near-white, so all of them sit correctly on any of these
+   without a per-tone copy.
+
+   `--surface-overlay` has to track `--surface-solid` by hand: it is the same
+   colour at 94% so an overlay stays readable over a blurred page, and CSS has
+   no way to add alpha to a hex token here without `color-mix`, which would cost
+   more than the four lines it saves.
+
+   `slate` is absent on purpose — it is the default already in `:root`/`.dark`.
+--------------------------------------------------------------------------- */
+
+:root[data-bg="zinc"] {
+  --background: #ededee;
+  --surface-solid: #f7f7f8;
+  --surface-overlay: rgba(247, 247, 248, 0.94);
+}
+
+.dark[data-bg="zinc"] {
+  --background: #0d0d0f;
+  --surface-solid: #17171a;
+  --surface-overlay: rgba(23, 23, 26, 0.94);
+}
+
+:root[data-bg="stone"] {
+  --background: #efece7;
+  --surface-solid: #f9f7f4;
+  --surface-overlay: rgba(249, 247, 244, 0.94);
+}
+
+.dark[data-bg="stone"] {
+  --background: #12100e;
+  --surface-solid: #1c1917;
+  --surface-overlay: rgba(28, 25, 23, 0.94);
+}
+
+/* The high-contrast pair: paper-white against near-black, for anyone who finds
+   the tinted defaults too soft to read comfortably */
+:root[data-bg="ink"] {
+  --background: #fbfcfd;
+  --surface-solid: #ffffff;
+  --surface-overlay: rgba(255, 255, 255, 0.95);
+}
+
+.dark[data-bg="ink"] {
+  --background: #050507;
+  --surface-solid: #0e0e11;
+  --surface-overlay: rgba(14, 14, 17, 0.95);
+}
+
+/* Named `swatch-bg-*` rather than `bg-swatch-*` so nothing here reads as a
+   Tailwind `bg-` utility */
+.swatch-bg-slate {
+  background-color: #eceff4;
+}
+.dark .swatch-bg-slate {
+  background-color: #0a1020;
+}
+
+.swatch-bg-zinc {
+  background-color: #ededee;
+}
+.dark .swatch-bg-zinc {
+  background-color: #0d0d0f;
+}
+
+.swatch-bg-stone {
+  background-color: #efece7;
+}
+.dark .swatch-bg-stone {
+  background-color: #12100e;
+}
+
+.swatch-bg-ink {
+  background-color: #fbfcfd;
+}
+.dark .swatch-bg-ink {
+  background-color: #050507;
+}
+
 @theme inline {
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);

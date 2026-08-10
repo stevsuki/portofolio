@@ -2,15 +2,17 @@
 
 import { useEffect, useRef, useState } from "react";
 import { FiDroplet } from "react-icons/fi";
-import AccentSwatches from "./AccentSwatches";
+import SwatchRow from "./SwatchRow";
+import { accentSetting } from "@/data/accents";
+import { backgroundSetting } from "@/data/backgrounds";
 
 /**
- * The navbar entry point for the accent colour. It collapses to a popover
- * rather than sitting inline because five dots beside the search, theme and
- * menu buttons is more than the header can hold on a narrow screen — below
- * `sm` the whole control is hidden and the mobile menu carries the row instead.
+ * The navbar entry point for the two colour axes. It collapses to a popover
+ * rather than sitting inline because nine dots beside the search, theme and
+ * menu buttons is more than the header can hold — below `sm` the whole control
+ * is hidden and the mobile menu carries the rows instead.
  */
-export default function AccentPicker() {
+export default function AppearancePicker() {
 	const [isOpen, setIsOpen] = useState(false);
 	const containerRef = useRef<HTMLDivElement>(null);
 	const toggleRef = useRef<HTMLButtonElement>(null);
@@ -47,7 +49,7 @@ export default function AccentPicker() {
 				ref={toggleRef}
 				type="button"
 				onClick={() => setIsOpen(!isOpen)}
-				aria-label="Change accent colour"
+				aria-label="Change colours"
 				aria-expanded={isOpen}
 				className={`group relative flex items-center justify-center w-10 h-10 overflow-hidden rounded-full border bg-surface transition-colors duration-300 ${
 					isOpen ? "border-accent/60 text-accent" : "border-line text-muted hover:text-accent hover:border-accent/60"
@@ -61,11 +63,25 @@ export default function AccentPicker() {
 			</button>
 
 			{isOpen && (
-				<div className="absolute right-0 top-12 z-50 flex flex-col gap-3 p-4 rounded-2xl border border-line bg-[var(--surface-overlay)] backdrop-blur-xl shadow-[var(--shadow-lift)] animate-menu-in">
-					<span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted whitespace-nowrap">
-						Accent
-					</span>
-					<AccentSwatches />
+				<div className="absolute right-0 top-12 z-50 flex flex-col gap-4 p-4 rounded-2xl border border-line bg-[var(--surface-overlay)] backdrop-blur-xl shadow-[var(--shadow-lift)] animate-menu-in">
+					<div className="flex flex-col gap-2.5">
+						<span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted whitespace-nowrap">
+							Accent
+						</span>
+						<SwatchRow setting={accentSetting} swatchPrefix="swatch" legend="Accent colour" />
+					</div>
+
+					<div className="flex flex-col gap-2.5 pt-4 border-t border-line">
+						<span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted whitespace-nowrap">
+							Background
+						</span>
+						<SwatchRow
+							setting={backgroundSetting}
+							swatchPrefix="swatch-bg"
+							legend="Background tone"
+							strongBorder
+						/>
+					</div>
 				</div>
 			)}
 		</div>

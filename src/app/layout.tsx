@@ -8,22 +8,23 @@ import ScrollToTop from "./components/ScrollToTop";
 import GradientTextMotion from "./components/GradientTextMotion";
 import { siteConfig } from "@/constants/site";
 import { jsonLd } from "@/lib/jsonLd";
-import { accentIds } from "@/data/accents";
-import { ACCENT_STORAGE_KEY } from "@/lib/accent";
+import { accentSetting } from "@/data/accents";
+import { backgroundSetting } from "@/data/backgrounds";
 import "./globals.css";
 
 /**
- * next-themes ships a blocking script for the light/dark class; the accent is
- * ours to restore, and it has to happen before the first paint or the page
- * flashes teal for a frame before switching to the stored colour.
+ * next-themes ships a blocking script for the light/dark class; the accent and
+ * background are ours to restore, and it has to happen before the first paint
+ * or the page flashes its defaults for a frame before switching to the stored
+ * pair.
  *
- * The id list is interpolated from the same array the picker renders, so a
- * palette added there is accepted here without a second edit. Nothing here
- * touches user input — a stored value that is not on the list is ignored.
+ * Both settings are serialised from the same objects the pickers render, so a
+ * palette added to either array is accepted here without a second edit. Nothing
+ * interpolated is user input — a stored value not on the list is ignored.
  */
-const accentScript = `(function(){try{var a=localStorage.getItem(${JSON.stringify(
-	ACCENT_STORAGE_KEY,
-)});if(${JSON.stringify(accentIds)}.indexOf(a)>-1)document.documentElement.dataset.accent=a}catch(e){}})()`;
+const swatchScript = `(function(){try{var s=${JSON.stringify(
+	[accentSetting, backgroundSetting].map((setting) => [setting.storageKey, setting.attribute, setting.ids]),
+)};for(var i=0;i<s.length;i++){var v=localStorage.getItem(s[i][0]);if(s[i][2].indexOf(v)>-1)document.documentElement.setAttribute("data-"+s[i][1],v)}}catch(e){}})()`;
 
 const outfit = Outfit({
 	weight: ["300", "400", "500", "600", "700"],
@@ -103,9 +104,9 @@ export default function RootLayout({
 	return (
 		<html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
 			<body className={`${outfit.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
-				{/* First thing in the body so the stored accent lands on <html> before
+				{/* First thing in the body so the stored colours land on <html> before
 				    anything is painted, the same slot next-themes uses for its own */}
-				<script dangerouslySetInnerHTML={{ __html: accentScript }} />
+				<script dangerouslySetInnerHTML={{ __html: swatchScript }} />
 				{/* Machine-readable identity for search engines. Rendered once at the
 				    root because the graph describes the site and its author, not any
 				    one page. */}
