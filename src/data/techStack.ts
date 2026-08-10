@@ -10,6 +10,8 @@ import {
 	SiPostgresql,
 	SiMongodb,
 	SiDocker,
+	SiKubernetes,
+	SiNginx,
 } from "react-icons/si";
 import { TechStack } from "@/types/techStack";
 
@@ -27,4 +29,6 @@ export const techStacks: TechStack[] = [
 	{ name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
 	{ name: "MongoDB", icon: SiMongodb, color: "#47A248" },
 	{ name: "Docker", icon: SiDocker, color: "#2496ED" },
+	{ name: "Kubernetes", icon: SiKubernetes, color: "#326CE5" },
+	{ name: "Nginx", icon: SiNginx, color: "#009639" },
 ];

@@ -12,6 +12,7 @@ const GROUPS = [
 	{ label: "Frontend", members: ["Next.js", "React", "Vite.js", "Tailwind CSS", "Bootstrap"] },
 	{ label: "Backend", members: ["Node.js", "Express.js", "Golang"] },
 	{ label: "Database", members: ["PostgreSQL", "MySQL", "SQL Server", "MongoDB"] },
+	{ label: "Infrastructure", members: ["Docker", "Kubernetes", "Nginx"] },
 	{ label: "Language", members: ["TypeScript", "JavaScript"] },
 ];
 
