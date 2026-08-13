@@ -11,8 +11,8 @@ import { techStacks } from "@/data/techStack";
 const GROUPS = [
 	{ label: "Frontend", members: ["Next.js", "React", "Vite.js", "Tailwind CSS", "Bootstrap"] },
 	{ label: "Backend", members: ["Node.js", "Express.js", "Golang"] },
-	{ label: "Database", members: ["PostgreSQL", "MySQL", "SQL Server", "MongoDB"] },
-	{ label: "Infrastructure", members: ["Docker", "Kubernetes", "Nginx"] },
+	{ label: "Database", members: ["PostgreSQL", "MySQL", "SQL Server", "MongoDB", "Redis"] },
+	{ label: "Infrastructure", members: ["Docker", "Kubernetes", "Nginx", "Kafka"] },
 	{ label: "Language", members: ["TypeScript", "JavaScript"] },
 ];
 
